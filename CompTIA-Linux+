@@ -1,0 +1,17 @@
+=== Linux + by CompTIA e LPIC-1 and  ===
+Prova > LX0-103 e LX0-104
+
+Prova 101 (LPI) e 103 (CompTIA)
++ 4 tópicos
+
+Prova 102 (LPI) e 104(CompTIA)
++ 6 tópicos
+
+=== Softwares Utilizados ===
+Oracle VM VirtualBox 5.2 rodando em cima de um Debian 9
+Emulando um CentOS 7 (Server GUI)
+
+== Configuraçes da máquina ==
+[CentOS7]
+
+
