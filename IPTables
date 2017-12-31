@@ -1,0 +1,250 @@
+00-Conceitos.txt
+Carregando as informações de compartilhamento…
+Tipo
+Texto
+Tamanho
+949 bytes
+Armazenamento usado
+949 bytes
+Local
+IPTables
+Proprietário
+eu
+Modificado
+em 19 de nov de 2017 por mim
+Aberto
+em 23:29 por mim
+Criado em
+19 de nov de 2017 com o Google Drive Web
+Adicionar uma descrição
+Os leitores podem fazer o download
+
+==IPTABLES==
+
+
+chains =  onde as regras são armazenadas
+
+tables - armazenam as chains, cada tabela  possui em média 3  chains
+
+iptables é dividido em 3 tabelas
+
+Filter - tabela padrão para filtragem mais simples  como bloqueio de portas e protocolos
+
+NAT - quando há necessidade de  realizar redirecionamento de trafego de dados  para outras portas ou ips
+
+Mangle - alterações  especiais no parcote
+
+
+IPTABLES - Chains
+
+--Filter--
+
+INPUT - trafego de dados que chegam até a maquina
+OUTPUT - trafego de dados que  saem da maquina
+FORWARD - Redirecionamento do trafego de dados da propria maquina para outra porta
+
+--NAT--
+
+PREROUTING - trafego de dados que requerem alterações antes de serem roteáveis
+POSTROUTING - trafego de dados que requerem alterações depois de serem roteaveis
+OUTPUT - trafedo de dados que saem do NAT
+
+
+
+
+===========================================================================================================
+
+==Comandos de Gerenciamento==
+
+-L = Lista as regras do iptables (padrão filter)
+
+-t = tabela (escolhe o tipo de tabela)
+
+root@debian9:~# #iptables -L -t filter
+root@debian9:~# #iptables -L -t nat
+root@debian9:~# iptables -L -t mangle
+
+--
+
+root@debian9:~# iptables -L -t filter
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+root@debian9:~# iptables -L -t nat
+Chain PREROUTING (policy ACCEPT)
+target     prot opt source               destination
+
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+
+Chain POSTROUTING (policy ACCEPT)
+target     prot opt source               destination
+root@debian9:~# iptables -L -t mangle
+Chain PREROUTING (policy ACCEPT)
+target     prot opt source               destination
+
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+
+Chain POSTROUTING (policy ACCEPT)
+target     prot opt source               destination
+
+--
+
+Caso não seja especificado a tabela para aplicar a regra, ou listar a regra o iptables utilizara a tabela filter como padrão
+
+-- Outros comandos --
+
+-d = destino (adiciona um destino)
+-s = origem (adiciona uma origem)
+-p = protocolo (aplica as regras sobre o protocolo escolhido: tcp udp icmp)
+--sport = porta (define a porta de origem. Deve ser acompanhado da opção -p)
+--dport = porta (define a porta de destino. Deve ser acompanhado da opção -p)
+-j = ação (indica qual ação tomar quando a regra é criada) EX:
+    DROP - Bloqueia trafego de dados
+    REJECT - Rejeita trafego de dados
+    ACCEPT - ACeita trafego de dados
+! = Exceção a regra que vier dps do ! EX: Nega tudo !IP (tudo será negado menos o IP declarado)
+-i = interface de entrada de dados
+-o = interface de saida de dados
+-A chain = Adiciona uma regra
+-D $numero = Detela a regra de $numero X
+-F = Apaga todas as regras
+-I chain $numero = Insere uma regra de numero X na chain escolhida, se $numero=1 é inserida a primeira regra
+
+
+
+
+===========================================================================================================
+
+==SINTAXE==
+
+iptables [-t tabela] [opção] [chain] [dados] -j [ação]
+
+Exemplo
+
+iptables -t filter -A FORWARD -d 192.168.1.1 -j DROP
+
+A linha acima determina que todos os pacotes destinados a maquina 192.168.1.1 devem ser descartados
+
+
+iptables -t filter -A OUTPUT -d 192.168.0.200 -j DROP
+
+Todos os pacotes vindas da maquina 192.168.0.200 serão descartados
+
+
+
+===========================================================================================================
+
+==MODULOS==
+
+uma forma de aplicar regras mais aprimoradas como por exemplo que travalhe sob uma analise do corpo do pacote
+
+sintaxe:
+
+-m <modulo>
+-match <modulo>
+
+lista de modulos:
+
+limit = limita o numero de vezes em que uma regra será executada antes de passar para a proxima regra
+state = observa o estado da conexão (NEW, ESTABLISHED, RELATED, INVALID)
+mac = permite que o iptables trabalhe com endereçamentos MAC
+multiport = permite que sejam especificados até 15 portas a uma regra de uma só vez
+string = ibserva o conteudo do pacote para somente aplicar a regra
+
+
+-limit-
+
+evitar alguns tipos de ataque
+
+iptables -A INPUT -p icmp --icmp-type echo-request -m limit --limit 1/s -j ACCEPT
+iptables -A INPUT -p icmp -j DROP
+
+Essa regra acima diz que o host só poderá receber uma solicitação de ping por segundo, caso aja mais de uma por segundo, o pacote será dropado
+
+Intervalos validos em uma regra de limit
+
+/s segundo
+/m minuto
+/h hora
+/d dia
+
+
+-state-
+
+atribui regras mediante a analise do estado da conexão de um pacote
+
+NEW = indica que o pacote está criando uma nova conexão
+ESTABLISHED = informa que o pacote pertence a uma conexão já existente, logo trata-se de um pacote de resposta
+RELATED = pacotes relacionados indiretamente com outro pacote. exemplo msg de erro de conexão
+INVALID = pacotes não identificados por algum motivo desconhecido, geralmente é aconcelhável que tais pacotes sejam descartados pelo firewall (DROP)
+
+É possível  utilizar mais do que apenas um estado  de conexão por regra, separando  cara estado por "," (virgula)
+
+
+Exemplos:
+
+iptables -A INPUT -m state --state NEW -i eth0 -j ACCEPT
+
+    aceita pacotes novos indo para a interface eth0
+
+iptables -A INPUT -m state --state INVALID -i eth0 -j DROP
+
+    dropa pacotes invalidos indo para a eth0
+
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+    todos os pacotes com os estados established e related serão aceitos independes da interface de entrada
+
+-mac-
+
+permite que o firewall atue na camada 2 do modelo osi, logo  a regra  não dependeria mais do ip do host de origem e sim do MAC address
+
+exemplo:
+
+iptables -A INPUT  -m mac --mac-source 64:1c:67:64:9f:5f -j DROP
+
+-multiport- (SINTAXE NAO FUNCIONOU)
+
+possibilida de adição de multiplas portas a um determinado alvo
+limite de 10 alvos por regra
+
+é possível usar o mmodulo multiport tanto para regras de destino (--dport), quanto de origem (--sport) OU usar apenas o --port se quisermos efitar a regra em portas de origem e destino ao mesmo tempo
+
+iptables -A INPUT -p tcp -i eth0 -m --multiport --dport 80,25,110,443 -j DROP
+bloqueando pacotes que entram na eth- com destino nas portas listadas com protoclo TCP
+
+
+iptables -A INPUT -p tcp -i eth0 -m --multiport --port 80,443 -j DROP
+bloqueia pacotes que entrem pela interface eth0 tanto na origem quando destino
+
+-string- sintaxe correta --modprobe=
+
+modulo util quando é preciso  realizar  controle de tragego baseado no conteudo do pacote
+
+ex,
+
+iptables -A INPUT -m --string "porn" -j DROP
+
+regra acima estara bloqueando pacotes que tenham a palava porn no corpo
+
+iptables -A INPUT -m --string "porn" -j LOG --log-prefix "Atenção: site de sexo"
+iptables -A INPUT -m --string "porn" -j DROP
+
+grava a palavra sexo e na sequencia bloqueia
+===========================================================================================================
