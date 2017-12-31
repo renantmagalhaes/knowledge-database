@@ -1,0 +1,60 @@
+Configure NETWORK via cli – CENTOS 7
+                 
+First of all we need to find the correct network device.
+The command nmcli d will do the trick
+DEVICE TYPE STATE CONNECTION
+enp0s3 ethernet disconnected enp0s3
+lo loopback unmanaged —
+In my case is enp0s3
+So lets edit the configuration file. Remember you need to be root to do it !
+The file is located here
+/etc/sysconfig/network-scripts/ifcfg-enp0s3
+And have the following content
+TYPE=Ethernet
+BOOTPROTO=none
+DEFROUTE=yes
+PEERDNS=yes
+PEERROUTES=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_PEERDNS=yes
+IPV6_PEERROUTES=yes
+IPV6_FAILURE_FATAL=no
+NAME=enp0s3
+UUID=828a0fb1-f5c7-4657-bfb6-5c939d888014
+DEVICE=enp0s3
+ONBOOT=no
+The lines marked are the important ones.
+From now on we have two paths to follow, dhcp or static ! I will show how configure both 
+DHCP
+Its the easier way ! just edit the two marked lines
+BOOTPROTO=none
+ONBOOT=no
+to
+BOOTPROTO=dhcp
+ONBOOT=yes
+Then restart the network interface
+[root@localhost ~]# /etc/init.d/network restart
+Restarting network (via systemctl): [ OK ]
+ 
+Static
+This require a little more will ! Edit the file …
+BOOTPROTO=none
+ONBOOT=no
+to
+BOOTPROTO=static
+ONBOOT=yes
+But you will need add some config lines !
+IPADDR=192.168.0.16
+NETMASK=255.255.255.0
+GATEWAY=192.168.0.1
+DNS1=8.8.8.8
+Then restart the network interface
+[root@localhost ~]# /etc/init.d/network restart
+Restarting network (via systemctl): [ OK ]
+Everything must be working at this time !
+
+
+
