@@ -3,38 +3,47 @@ Configure NETWORK - Debian
         
 First of all we need to find the correct network device.
 The command netstat -i will do the trick
+
 rtm@debian:~$ netstat -i
 Kernel Interface table
 Iface MTU Met RX-OK RX-ERR RX-DRP RX-OVR TX-OK TX-ERR TX-DRP TX-OVR Flg
 eth0 1500 0 476 0 0 0 187 0 0 0 BMRU
 lo 65536 0 0 0 0 0 0 0 0 0 LRU
+
 In my case is eth0
+
 So lets edit the configuration file. Remember you need to be root to do it !
 The file is located here
+
 vi /etc/network/interfaces
+
 From now on we have two paths to follow, dhcp or static ! I will show how configure both
-DHCP
+
+==DHCP==
 Add these lines
-   auto eth0
-    allow-hotplug eth0
-    iface eth0 inet dhcp
+        auto eth0
+        allow-hotplug eth0
+        iface eth0 inet dhcp
 Then restart the interface
 root@debian:~# /etc/init.d/networking restart
 [ ok ] Restarting networking (via systemctl): networking.service.
 And its done!
-STATIC
-This require a little more will ! Edit the file and add the following lines according to your scenario
-auto eth0
-iface eth0 inet static
-address 192.168.0.21 
-netmask 255.255.255.0
-gateway 192.168.0.1
-dns-nameservers 8.8.8.8
 
+==STATIC==
+This require a little more will ! Edit the file and add the following lines according to your scenario
+
+        auto eth0
+        iface eth0 inet static
+        address 192.168.0.21 
+        netmask 255.255.255.0
+        gateway 192.168.0.1
+        dns-nameservers 8.8.8.8
 
 
 Then restart the interface
+
 root@debian:~# /etc/init.d/networking restart
 [ ok ] Restarting networking (via systemctl): networking.service.
+
 And its done!
 Everything must be working at this time !
