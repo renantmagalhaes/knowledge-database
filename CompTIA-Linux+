@@ -9,9 +9,14 @@ Prova 102 (LPI) e 104(CompTIA)
 
 === Softwares Utilizados ===
 Oracle VM VirtualBox 5.2 rodando em cima de um Debian 9
-Emulando um CentOS 7 (Server GUI)
+Emulando um CentOS 7 (Server Infrastructure)
 
 == Configuraçes da máquina ==
 [CentOS7]
-
-
+1 CPU
+1024 RAM
+16 GB de Disco - LVM
+  300MB - /boot
+  8GB - /
+  512MB - /swap
+  8GB - Não alocado
