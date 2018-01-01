@@ -21,9 +21,11 @@ From now on we have two paths to follow, dhcp or static ! I will show how config
 
 ==DHCP==
 Add these lines
+
         auto eth0
         allow-hotplug eth0
         iface eth0 inet dhcp
+        
 Then restart the interface
 root@debian:~# /etc/init.d/networking restart
 [ ok ] Restarting networking (via systemctl): networking.service.
