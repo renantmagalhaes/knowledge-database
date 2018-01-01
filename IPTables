@@ -124,7 +124,7 @@ A linha acima determina que todos os pacotes destinados a maquina 192.168.1.1 de
 
 iptables -t filter -A OUTPUT -d 192.168.0.200 -j DROP
 
-Todos os pacotes vindas da maquina 192.168.0.200 serão descartados
+Todos os pacotes vindas da maquina 192.168.0.200 serão descartados.
 
 
 
