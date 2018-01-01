@@ -1,4 +1,4 @@
-Configure NETWORK via cli – CENTOS 7
+Configure NETWORK – CENTOS 7
                  
 First of all we need to find the correct network device.
 The command nmcli d will do the trick
