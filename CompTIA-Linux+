@@ -20,3 +20,69 @@ Emulando um CentOS 7 (Server Infrastructure)
   8GB - /
   512MB - /swap
   8GB - Não alocado
+
+
+== Comandos ==
+
+Comandos - type / path
+
+Internos - Imbutido no shell (builtin)
+Externos - Programa externo (hashed) dentro do $PATH
+Script - Sequencia logica de comandos
+
+[root@centos7 ~]# type echo
+echo is a shell builtin
+[root@centos7 ~]# type cd
+cd is a shell builtin
+[root@centos7 ~]# type clear
+clear is /usr/bin/clear
+[root@centos7 ~]# type tar
+tar is hashed (/usr/bin/tar)
+
+
+[root@centos7 ~]# echo $PATH
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
+
+== Variavel ==
+
+[Local] - Somente na sessão atual
+
+[root@centos7 ~]# VAR_NAME=nome_da_variavel
+[root@centos7 ~]# echo $VAR_NAME
+nome_da_variavel
+
+[Global] 
+Para transformar ela em uma variável global. (Porém somente para processos originados a partir deste bash)
+export VAR_NAME
+
+Mostrando variáveis:
+set - todas as variáveis 
+env - somente variáveis globais
+
+[root@centos7 ~]# type set
+set is a shell builtin
+[root@centos7 ~]# type env
+env is hashed (/usr/bin/env)
+
+[root@centos7 Exercicios]# cat Script_Variavel.sh
+#!/bin/bash
+echo "O script le e imprime o valor da variavel TESTE"
+echo " "
+echo "O valor da variavel TESTE é:" $TESTE
+
+
+[root@centos7 Exercicios]# export TESTE=123
+[root@centos7 Exercicios]# ./Script_Variavel.sh
+O script le e imprime o valor da variavel TESTE
+
+O valor da variavel TESTE é: 123
+[root@centos7 Exercicios]# env TESTE=111111 ./Script_Variavel.sh
+O script le e imprime o valor da variavel TESTE
+
+O valor da variavel TESTE é: 111111
+[root@centos7 Exercicios]# echo $TESTE
+123
+
+
+
+
