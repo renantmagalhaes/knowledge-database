@@ -15,4 +15,8 @@ Manage enviroment > Add Kubernetes > Add Host > Docker CLI to agent
 #enable proxy
 kubectl proxy
 
+# Create deployment
+$ kubectl run nginx --image=nginx --port=80
 
+# Create service
+$ kubectl expose deployment nginx --type=NodePort
