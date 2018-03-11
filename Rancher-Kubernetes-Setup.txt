@@ -20,3 +20,5 @@ $ kubectl run nginx --image=nginx --port=80
 
 # Create service
 $ kubectl expose deployment nginx --type=NodePort
+
+.
