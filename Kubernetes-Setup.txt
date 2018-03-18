@@ -13,8 +13,12 @@ kubectl get services
 kubectl delete services $NAME
 
 =================================KOPS - AWS=================================
+Links
+https://jee-appy.blogspot.com.br/2017/10/setup-kubernetes-cluster-kops-aws.html
+https://github.com/kubernetes/kops/blob/master/docs/high_availability.md
 
-
+https://aws.amazon.com/pt/blogs/compute/kubernetes-clusters-aws-kops/
+https://kubernetes.io/docs/getting-started-guides/kops/
 
 =================================RANCHER=================================
 Disable SELinux
