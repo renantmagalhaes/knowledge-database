@@ -1,3 +1,22 @@
+=================================Commands=================================
+
+kubectl get pods
+
+kubectl delete pod $NAME
+
+kubectl get deployments 
+
+kubectl delete deployment $NAME
+
+kubectl get services
+
+kubectl delete services $NAME
+
+=================================KOPS - AWS=================================
+
+
+
+=================================RANCHER=================================
 Disable SELinux
 
 iptables -I INPUT -j ACCEPT
@@ -15,15 +34,15 @@ Manage enviroment > Add Kubernetes > Add Host > Docker CLI to agent
 #enable proxy
 kubectl proxy
 
-# Create deployment
-$ kubectl run nginx --image=nginx --port=80
 
-# Create service
+# Deployment Example lvl 1
+$ kubectl run nginx --image=nginx --port=80
 $ kubectl expose deployment nginx --type=NodePort
 
 
 
-# Run LoadBalancer to expose service
+# Deployment Example lvl 2
+  #Expose a service
 kubectl run $NAME --replicas=4 --labels="run=load-balancer-$NAME" --image=$REPO/$IMAGE:$TAG --port=$PORTNUMBER
 kubectl get pods --selector="run=load-balancer-$NAME"
 kubectl get replicasets --selector="run=load-balancer-$NAME"
@@ -32,19 +51,5 @@ Or
 kubectl expose rs $REPLICASET_NAME --port=80 --target-port=80 --name=thumbor-service --type=LoadBalancer --external-ip=192.168.5.30
 
 
-
-# Commands
-
-kubectl get pods
-
-kubectl delete pod $NAME
-
-kubectl get deployments 
-
-kubectl delete deployment $NAME
-
-kubectl get services
-
-kubectl delete services $NAME
 
 
