@@ -12,6 +12,10 @@ kubectl get services
 
 kubectl delete services $NAME
 
+
+#Upgrade deployment image
+kubectl set image deployments/$DEPLOYMENT_NAME $DEPLOYMENT_NAME=$URL:$TAG
+
 =================================KOPS - AWS=================================
 Links
 https://jee-appy.blogspot.com.br/2017/10/setup-kubernetes-cluster-kops-aws.html
