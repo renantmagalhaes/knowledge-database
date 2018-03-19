@@ -34,7 +34,7 @@ sudo mv kops-linux-amd64 /usr/local/bin/kops
 #Install AWS CLI
 https://docs.aws.amazon.com/pt_br/cli/latest/userguide/installing.html
 
-#Setup IAM user (https://github.com/kubernetes/kops/blob/master/docs/aws.md#setup-iam-user)
+#Setup IAM user (https://github.com/kubernetes/kopsk/blob/master/docs/aws.md#setup-iam-user)
 
 AmazonEC2FullAccess
 AmazonRoute53FullAccess
@@ -44,19 +44,19 @@ AmazonVPCFullAccess
 
 #Create IAM user from the command line
 
-    aws iam create-group --group-name kops
+    /root/.local/bin/aws iam create-group --group-name kops
 
-    aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonEC2FullAccess --group-name kops
-    aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonRoute53FullAccess --group-name kops
-    aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess --group-name kops
-    aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/IAMFullAccess --group-name kops
-    aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonVPCFullAccess --group-name kops
+    /root/.local/bin/aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonEC2FullAccess --group-name kops
+    /root/.local/bin/aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonRoute53FullAccess --group-name kops
+    /root/.local/bin/aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess --group-name kops
+    /root/.local/bin/aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/IAMFullAccess --group-name kops
+    /root/.local/bin/aws iam attach-group-policy --policy-arn arn:aws:iam::aws:policy/AmazonVPCFullAccess --group-name kops
 
-    aws iam create-user --user-name kops
+    /root/.local/bin/aws iam create-user --user-name kops
 
-    aws iam add-user-to-group --user-name kops --group-name kops
+    /root/.local/bin/aws iam add-user-to-group --user-name kops --group-name kops
 
-    aws iam create-access-key --user-name kops
+     iam create-access-key --user-name kops
 
 You should record the SecretAccessKey and AccessKeyID in the returned JSON output, and then use them below:
 
@@ -68,12 +68,13 @@ You should record the SecretAccessKey and AccessKeyID in the returned JSON outpu
     export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
     export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
 
+#Create public key
+ssh-keygen
 
 # Amazon S3 bucket for the Kubernetes state store
-    aws s3api create-bucket --bucket kubernetes-BUCKET-NAME
+    aws s3api create-bucket --bucket kubernetes-BUCKET-NAME #need to specify the zone
 ## Versioning the bucket
     aws s3api put-bucket-versioning --bucket kubernetes-BUCKET-NAME --versioning-configuration Status=Enabled
-
 
 
 # DNS 
@@ -84,9 +85,23 @@ Enable "auto dns" in cluster creation
 The only requirement to trigger this is to have the cluster name end with .k8s.local
 
 #Create Cluster
+kops create cluster     --zones  us-east-2c     ${NAME}
+kops update cluster ${NAME} --yes
+
 
 # Create HA Cluster
 https://github.com/kubernetes/kops/blob/master/docs/high_availability.md
+
+
+
+
+
+
+
+
+
+
+
 =================================RANCHER=================================
 Disable SELinux
 
