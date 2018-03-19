@@ -9,12 +9,11 @@ vi /etc/zabbix/zabbix_agentd.conf
 
 ### Zabbix Server IP Address or Hostname ###
 
-Server=$SERVERNAME or $SERVERIPc
+Server=$SERVERNAME or $SERVERIP
 ServerActive=$SERVERNAME or $SERVERIP
 Comment Hostname
 Uncoment HostnameItem
 HostMetadataItem=system.uname #For registration in Actions
-
 
 #Restart zabbix_agentd
 service zabbix-agent restart
