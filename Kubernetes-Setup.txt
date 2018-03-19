@@ -79,6 +79,10 @@ You should record the SecretAccessKey and AccessKeyID in the returned JSON outpu
 # DNS 
 Verify
 
+Enable "auto dns" in cluster creation
+.k8s.local
+The only requirement to trigger this is to have the cluster name end with .k8s.local
+
 #Create Cluster
 
 # Create HA Cluster
