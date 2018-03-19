@@ -13,7 +13,7 @@ Server=$SERVERNAME or $SERVERIPc
 ServerActive=$SERVERNAME or $SERVERIP
 Comment Hostname
 Uncoment HostnameItem
-HostMetadataItem=system.uname #For registration in Actionsa
+HostMetadataItem=system.uname #For registration in Actions
 
 
 #Restart zabbix_agentd
