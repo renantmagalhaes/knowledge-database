@@ -83,6 +83,106 @@ O valor da variavel TESTE é: 111111
 [root@centos7 Exercicios]# echo $TESTE
 123
 
+== Filtros de texto ==
+
+ [cat] 
+
+    -A, --show-all          equivalente a -vET
+    -b, --number-nonblank   numera as linhas de saída que não forem em branco,
+                              sobrepõe -n
+    -e                      equivalente a -vE
+    -E, --show-ends         insere $ ao final de cada linha
+    -n, --number            numera todas as linhas de saída
+    -s, --squeeze-blank     suprime linhas em branco repetidas
+    -t                      equivalente a -vT
+    -T, --show-tabs         mostra os caracteres de tabulação como ^I
+    -u                      (sem efeito)
+    -v, --show-nonprinting  utiliza a notação ^ e M-, exceto para LFD e TAB
+        --help     mostra esta ajuda e finaliza
+
+
+[tac]
+
+    -b,  --before            coloca o separador antes de cada linha, em vez de
+                               colocar depois
+    -r,  --regex             interpreta o separador como uma expressão regular
+    -s,  --separator=TEXTO   usa TEXTO como separador, em vez do caractere de
+
+[haad] 
+
+    -c, --bytes=[-]K         print the first K bytes of each file;
+                               with the leading '-', print all but the last
+                               K bytes of each file
+    -n, --lines=[-]K         print the first K lines instead of the first 10;
+                               with the leading '-', print all but the last
+                               K lines of each file
+    -q, --quiet, --silent    nunca emitir cabeçalhos com os nomes dos arquivos
+    -v, --verbose            sempre emitir cabeçalhos com nomes dos arquivos
+
+[tail]
+    -c, --bytes=K            output the last K bytes; or use -c +K to output
+                               bytes starting with the Kth of each file
+    -f, --follow[={name|descriptor}]
+                             output appended data as the file grows;
+                               an absent option argument means 'descriptor'
+    -F                       same as --follow=name --retry
+    -n, --lines=K            output the last K lines, instead of the last 10;
+                               or use -n +K to output starting with the Kth
+        --max-unchanged-stats=N
+                             with --follow=name, reopen a FILE which has not
+                               changed size after N (default 5) iterations
+                               to see if it has been unlinked or renamed
+                               (this is the usual case of rotated log files);
+                               with inotify, this option is rarely useful
+        --pid=PID            with -f, terminate after process ID, PID dies
+    -q, --quiet, --silent    never output headers giving file names
+        --retry              keep trying to open a file if it is inaccessible
+    -s, --sleep-interval=N   with -f, sleep for approximately N seconds
+                               (default 1.0) between iterations;
+                               with inotify and --pid=P, check process P at
+                               least once every N seconds
+    -v, --verbose            always output headers giving file names
+        --help     mostra esta ajuda e finaliza
+        --version  informa a versão e finaliza
+
+[less]
+
+Paginação
+
+[wc]  
+    -c, --bytes            print the byte counts
+    -m, --chars            print the character counts
+    -l, --lines            print the newline counts
+        --files0-from=F    read input from the files specified by
+                            NUL-terminated names in file F;
+                            If F is - then read names from standard input
+    -L, --max-line-length  print the length of the longest line
+    -w, --words            print the word counts
+
+[nl]
+
+número de linhas
+
+[sort]
+
+-k2 ordena pelo segundo campo
+  -b, --ignore-leading-blanks  ignora espaços-brancos iniciais
+  -d, --dictionary-order      considera apenas espaços-brancos e caracteres
+                                alfanuméricos
+  -f, --ignore-case           ignora diferença entre maiúsculas e minúsculas
+  -g, --general-numeric-sort  compare according to general numerical value
+  -i, --ignore-nonprinting    consider only printable characters
+  -M, --month-sort            compare (unknown) < 'JAN' < ... < 'DEC'
+  -h, --human-numeric-sort    compare human readable numbers (e.g., 2K 1G)
+  -n, --numeric-sort          compare according to string numerical value
+  -R, --random-sort           sort by random hash of keys
+      --random-source=FILE    get random bytes from FILE
+  -r, --reverse               reverse the result of comparisons
+      --sort=WORD             sort according to WORD:
+                                general-numeric -g, human-numeric -h, month -M,
+                                numeric -n, random -R, version -V
+  -V, --version-sort          natural sort of (version) numbers within text
+
 
 
 

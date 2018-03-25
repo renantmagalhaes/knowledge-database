@@ -60,10 +60,10 @@ to
 
 But you will need add some config lines !
 
-  IPADDR=192.168.0.16
-  NETMASK=255.255.255.0
-  GATEWAY=192.168.0.1
-  DNS1=8.8.8.8
+IPADDR=192.168.0.16
+NETMASK=255.255.255.0
+GATEWAY=192.168.0.1
+DNS1=8.8.8.8
 
 Then restart the network interface
 [root@localhost ~]# /etc/init.d/network restart
