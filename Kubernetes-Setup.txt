@@ -4,7 +4,7 @@ kubectl get pods
 
 kubectl delete pod $NAME
 
-kubectl get deployments 
+kubectl get deployments
 
 kubectl delete deployment $NAME
 
@@ -81,7 +81,7 @@ ssh-keygen
     aws s3api put-bucket-versioning --bucket kubernetes-BUCKET-NAME --versioning-configuration Status=Enabled
 
 
-# DNS 
+# DNS
 Verify
 
 Enable "auto dns" in cluster creation
@@ -141,5 +141,8 @@ Or
 kubectl expose rs $REPLICASET_NAME --port=80 --target-port=80 --name=thumbor-service --type=LoadBalancer --external-ip=192.168.5.30
 
 
+=============Other Links===============
 
+Traefik netwoork config
+http://tutoriaisgnulinux.com/2017/12/11/configurando-o-treafik-no-cluster-kubernetes/
 
