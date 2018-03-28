@@ -146,3 +146,10 @@ kubectl expose rs $REPLICASET_NAME --port=80 --target-port=80 --name=thumbor-ser
 Traefik netwoork config
 http://tutoriaisgnulinux.com/2017/12/11/configurando-o-treafik-no-cluster-kubernetes/
 
+
+Ingress config
+https://hackernoon.com/setting-up-nginx-ingress-on-kubernetes-2b733d8d2f45
+https://daemonza.github.io/2017/02/13/kubernetes-nginx-ingress-controller/
+
+http://blog.wercker.com/production-kubernetes-cluster-with-full-ci/cd-in-5-steps#2
+
