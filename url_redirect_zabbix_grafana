@@ -12,3 +12,9 @@ ProxyPass /grafana http://$URL or $IP:3000
 ProxyPassReverse /grafana http://$URL or $IP:3000
 
 </VirtualHost>
+
+
+EDIT: /etc/grafana/grafana.ini
+
+domain = $DOMAINSERVER
+root_url = %(protocol)s://%(domain)s:%(http_port)s/grafana
