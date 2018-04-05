@@ -1,3 +1,7 @@
+==reference==
+https://www.cyberciti.biz/faq/ubuntu-start-stop-iptables-service/
+=============
+
 Run the following. It'll insert the rule at the top of your iptables and will allow all traffic unless subsequently handled by another rule.
 
 iptables -I INPUT -j ACCEPT
