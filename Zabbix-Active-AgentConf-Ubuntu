@@ -1,0 +1,4 @@
+#UBUNTU 16.04
+#login as root
+#Set var $SERVER_NAME 
+wget http://repo.zabbix.com/zabbix/3.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.4-1+xenial_all.deb && dpkg -i zabbix-release_3.4-1+xenial_all.deb && apt-get update && apt-get install zabbix-agent && sed -i 's/127.0.0.1/$SERVER_NAME/' /etc/zabbix/zabbix_agentd.conf && sed -i 's/Hostname=Zabbix server//' /etc/zabbix/zabbix_agentd.conf && sed -i 's/\#\ HostnameItem=system.hostname/HostnameItem=system.hostname/' /etc/zabbix/zabbix_agentd.conf && sed -i 's/\#\ HostMetadataItem=/HostMetadataItem=system.uname/' /etc/zabbix/zabbix_agentd.conf &&  service zabbix-agent restart && systemctl enable zabbix-agent
