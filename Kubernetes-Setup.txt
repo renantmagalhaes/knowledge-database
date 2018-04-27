@@ -106,7 +106,7 @@ https://github.com/kubernetes/kops/blob/master/docs/high_availability.md
 
 
 
-=================================RANCHER=================================
+=================================RANCHER 1.6=================================
 Disable SELinux
 
 iptables -I INPUT -j ACCEPT
@@ -139,6 +139,17 @@ kubectl get replicasets --selector="run=load-balancer-$NAME"
 kubectl expose rs $REPLICASET_NAME --port=80 --target-port=80 --name=thumbor-service --type=LoadBalancer --external-ip=192.168.5.30
 Or
 kubectl expose rs $REPLICASET_NAME --port=80 --target-port=80 --name=thumbor-service --type=LoadBalancer --external-ip=192.168.5.30
+
+=================================RANCHER 2.0=================================
+#Install Docker
+curl https://releases.rancher.com/install-docker/17.03.2.sh | sh
+
+#Install Rancher
+sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/server:preview
+
+#Configure internal IP on cluster to work
+
+
 
 
 =============Other Links===============
