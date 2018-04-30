@@ -1,5 +1,6 @@
-Transcript from https://www.tecmint.com/sshfs-mount-remote-linux-filesystem-directory-using-ssh/
-
+####################################################################################################
+# Transcript from https://www.tecmint.com/sshfs-mount-remote-linux-filesystem-directory-using-ssh/ #
+####################################################################################################
 
 
 The main purpose of writing this article is to provide a step-by-step guide on how to mount remote Linux file system using SSHFS client over SSH.
