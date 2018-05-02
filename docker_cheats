@@ -1,13 +1,13 @@
 ==Stop / Remove all docker containers/images at once==
 
 #Stop
-docker stop -f $(docker ps -a -q)
+docker stop $(docker ps -a -q)
 
 #Remove
-docker rm -f $(docker ps -a -q)
+docker rm $(docker ps -a -q)
 
 #Remove images
-docker rmi -f $(docker images -q)
+docker rmi $(docker images -q)
 
 #Deleting all files
 service docker stop
