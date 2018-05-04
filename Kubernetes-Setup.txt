@@ -164,3 +164,15 @@ https://daemonza.github.io/2017/02/13/kubernetes-nginx-ingress-controller/
 
 http://blog.wercker.com/production-kubernetes-cluster-with-full-ci/cd-in-5-steps#2
 
+
+=============== wipe out @shane ==========
+
+docker stop $(docker ps -aq)
+docker rm -f $(docker ps -qa)
+docker rmi $(docker images -a -q)
+docker volume rm $(docker volume ls -q)
+cleanupdirs="/var/lib/etcd /etc/kubernetes /etc/cni /opt/cni /var/lib/cni /var/run/calico"
+for dir in $cleanupdirs; do
+ echo "Removing $dir"
+ sudo rm -rf $dir
+done
