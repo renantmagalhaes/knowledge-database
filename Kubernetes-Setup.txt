@@ -145,9 +145,11 @@ kubectl expose rs $REPLICASET_NAME --port=80 --target-port=80 --name=thumbor-ser
 curl https://releases.rancher.com/install-docker/17.03.2.sh | sh
 
 #Install Rancher
-sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/server:preview
+sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
 
-#Configure internal IP on cluster to work
+
+#Baremetal
+#Configure internal IP on cluster to work 
 
 
 
