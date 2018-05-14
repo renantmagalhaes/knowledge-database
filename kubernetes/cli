@@ -1,0 +1,15 @@
+kubectl get pods
+
+kubectl delete pod $NAME
+
+kubectl get deployments
+
+kubectl delete deployment $NAME
+
+kubectl get services
+
+kubectl delete services $NAME
+
+
+#Upgrade deployment image
+kubectl set image deployments/$DEPLOYMENT_NAME $DEPLOYMENT_NAME=$URL:$TAG
