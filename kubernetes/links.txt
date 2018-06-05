@@ -10,6 +10,8 @@ https://daemonza.github.io/2017/02/13/kubernetes-nginx-ingress-controller/
 
 http://blog.wercker.com/production-kubernetes-cluster-with-full-ci/cd-in-5-steps#2
 
+https://octoperf.com/blog/2018/06/04/rancher-2-getting-started/#
+
 
 =============== wipe out @shane ==========
 
