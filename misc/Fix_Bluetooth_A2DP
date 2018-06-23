@@ -1,0 +1,16 @@
+#Install some missing packages
+apt-get install pulseaudio pulseaudio-module-bluetooth pavucontrol bluez-firmware blueman
+
+# Set config
+echo "AutoConnect=true" >> /etc/bluetooth/main.conf
+
+#Restart service
+service bluetooth restart
+
+#Kill pulseaudio
+killall pulseaudio
+
+#Run pavucontrol as root
+pavucontrol
+
+And do to Output > Show "All Output Devices" > Select A2DP
