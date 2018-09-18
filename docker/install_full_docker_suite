@@ -1,0 +1,8 @@
+Install latest docker
+curl -sSL https://get.docker.com/ | sh
+
+Install docker compose
+https://docs.docker.com/compose/install/#install-compose
+
+Install docker machine
+https://docs.docker.com/machine/install-machine/
