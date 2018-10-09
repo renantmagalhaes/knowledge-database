@@ -1,0 +1,17 @@
+1 - No diretorio /etc/apt/sources.list.d tem um arquivo. Abre ele com nano e comente ele colocando um #. Salve e saia
+
+2 - Com o nano edite o arquivo /etc/apt/sources.list e adicione a ultima linha
+deb http://mirror.pop-sc.rnp.br/debian stretch main contrib
+
+deb http://mirror.pop-sc.rnp.br/debian stretch-updates main contrib
+
+deb http://download.proxmox.com/debian stretch main contrib pve-no-subscription
+salve e  saia do editor
+
+3 - Digite
+apt update
+
+e depois
+apt dist-upgrade
+
+E reinicie o servidor.
