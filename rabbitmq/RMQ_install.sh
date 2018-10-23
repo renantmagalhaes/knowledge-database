@@ -9,7 +9,7 @@
 #
 # This script  will install a full working rabbitmq node
 #
-# For building a RMQ cluster see https://github.com/renantmagalhaes/knowledge-database/RabbitMQ 
+# For building a RMQ cluster see https://github.com/renantmagalhaes/knowledge-database/rabbitmq
 #
 # --------------------------------------------------------------
 #
