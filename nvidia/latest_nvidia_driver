@@ -1,0 +1,83 @@
+retirado de: https://sempreupdate.com.br/como-instalar-driver-nvidia-ultima-versao/
+
+A Instalação
+Como já dissemos no início, temos o driver Nvidia instalado direto do repositório do Debian e assim devemos desinstalar o mesmo.
+
+Vamos sair da sessão atual, e depois ir para o console TTY com as teclas Crtl + Alt + F1.
+
+Já no console TTY, logamos como root e paramos o X. No nosso caso o X em questão é o Lightdm. Faça a adaptação de acordo com o que você usa.
+
+COMANDO:
+service lightdm stop
+Então vamos a desinstalação do driver da Nvidia que está instalado, relacionando qualquer biblioteca relacionado a Nvidia para não termos nenhum tipo de problema.
+
+COMANDO:
+apt-get remove nvidia*
+Agora já no diretório para onde foi feito o download do driver, vamos fazer a instalação do driver que baixamos.
+
+COMANDO:
+sh ./NVIDIA-Linux-x86_64-390.77.run
+Neste momento, devemos ter bastante atenção no processo de instalação. Deixarei abaixo as mensagem já traduzidas para uma melhor compreensão.
+
+Na tela NVIDIA Accelerated Graphics Driver for Linux-x86_64 (390.77) teremos mensagens que deverá ser escolhida a opção para o processo de instalação prosseguir.
+
+Primeira mensagem
+O driver NVIDIA parece ter sido instalado anteriormente usando um instalador diferente. Para evitar possíveis conflitos, recomenda-se atualizar a instalação existente usando o mesmo mecanismo pelo qual foi originalmente instalado ou desinstalar a instalação existente antes de instalar esse driver.
+
+Revise a mensagem fornecida pelo mantenedor deste método de instalação alternativo e decida como proceder:
+
+Continue a instalação
+
+Anular a instalação
+
+Por favor, use os pacotes Debian ao invés do arquivo .run.
+
+Notamos que no final dessa primeira mensagem, é instruído utilizar o pacote da própria distribuição. No entanto queremos utilizar a última versão do pacote lançado pela Nvidia assim escolhemos Continue installation (Continuar instalação).
+
+Segunda mensagem
+Você gostaria de registrar as fontes do módulo do kernel com o DKMS? Isso permitirá que o DKMS construa automaticamente um novo módulo, se você instalar um kernel diferente posteriormente.
+
+Sim
+
+Não
+
+Para prosseguirmos, escolhemos Yes (Sim).
+
+Terceira mensagem
+Instalar as bibliotecas de compatibilidade de 32-bits da NVIDIA?
+
+Sim
+
+Não
+
+Para prosseguirmos e não termos nenhum problema, por exemplo, com jogos que dependem de bibliotecas de 32 bit, vamos escolher Yes (Sim).
+
+Quarta mensagem
+Uma instalação incompleta do libglvnd foi encontrada. Você quer instalar uma cópia completa do libglvnd? Isto sobrescreverá quaisquer bibliotecas libglvnd existente.
+
+Não instale o libglvnd
+
+Instalar e substituir existente
+
+Anular a instalação
+
+Como desinstalamos todos os pacotes relacionados a Nvidia no driver que estava instalado no momento com suas dependências, vamos escolher Install and overwrite existing (Instalar e substituir existente).
+
+Quinta mensagem
+Você gostaria de executar o utilitário nvidia-xconfig para atualizar automaticamente seu arquivo de configuração X para que o driver NVIDIA X seja usado quando você reiniciar o X? Qualquer arquivo de configuração X pré-existente será submetido a backup.
+
+Sim
+
+Não
+
+Como será feito o backup do xorg.conf que é o arquivo de configuração do X, vamos escolher Yes (Sim).
+
+Sexta mensagem
+Seu arquivo de configuração do X foi totalmente atualizado. A instalação do Gráficos Acelerados NVIDIA para Linux-x86_64 (versão: 390.77) está concluída.
+
+Ok
+
+Agora vamos dar um reboot no sistema para subir todos os módulos corretamente no boot do sistema.
+
+COMANDO:
+reboot
