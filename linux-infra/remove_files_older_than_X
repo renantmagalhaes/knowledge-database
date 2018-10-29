@@ -1,0 +1,19 @@
+find /path/to/folder -mtime +10 | xargs rm
+
+-mtime +10
+  files older than 1 day
+
+
+#other parameters
+
+-size 0
+  files with size 0
+  
+|grep -v pattern
+  invert match
+ 
+
+#find file and edit the search 
+find path/to/files -mtime +1 -size 0 | grep .downloading  | sed -e 's/\.downloading/\*/g' |xargs echo rm | sh
+
+modify the .downloading with "*" and remove all
