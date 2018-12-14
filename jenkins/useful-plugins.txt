@@ -1,0 +1,26 @@
+* Misc
+- Locale
+
+* Server monitoring
+- Disk Usage plugin
+
+* Dashboard and Views
+- Build Monitor Plugin
+- Nested View Plugin
+
+* Job Configuration
+- Job Configuration History Plugin
+
+* UI Customization
+- Green Balls
+
+* Pipeline
+- Pipeline as Code
+- Build Pipeline Plugin
+
+* Build tools
+- Copy Artifact Plugin
+- GitHub plugin
+
+
+
