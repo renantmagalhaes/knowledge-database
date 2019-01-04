@@ -13,7 +13,9 @@ Is required to read all the comments for this installation, there are some infor
     * [Zookeeper](https://github.com/renantmagalhaes/knowledge-database/blob/master/kafka-zookeeper-cluster/3-monitoring-cluster/zookeeper)
 * [Cheat Sheet](https://github.com/renantmagalhaes/knowledge-database/tree/master/kafka-zookeeper-cluster/cheat-sheet)
 
-### FOR PUBLIC CLOUDS
+### Troubleshooting
+
+#### FOR PUBLIC CLOUDS
 Open ports:
 
     Zookeeper:
@@ -24,7 +26,7 @@ Open ports:
     Kafka:
     - 9092
 
-### FOR ON-PREMISES
+#### FOR ON-PREMISES
 If using virtualbox or any other virtualization server maybe the zookeeper server wont start and show some type of "Connection Refuse" error. If that's the case is needed to set the server.x to 0.0.0.0 accordingly.
 
 For example in host 1 is:
