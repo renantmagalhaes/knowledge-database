@@ -6,12 +6,12 @@ Is required to read all the comments for this installation, there are some infor
 - I use DNS entries to map my hosts, you can also use the private IP of the machines
 
 ### Table of contents
-* Cluster Installation
-* Configure UI to management
+* [Cluster Installation](https://github.com/renantmagalhaes/knowledge-database/blob/master/kafka-zookeeper-cluster/1-kafka-zoo-cluster-installation.sh)
+* [Configure UI to management](https://github.com/renantmagalhaes/knowledge-database/blob/master/kafka-zookeeper-cluster/2-cluster-ui-docker)
 * How to monitor your cluster
-    * Kafka
-    * Zookeeper
-* Cheat Sheet
+    * [Kafka](https://github.com/renantmagalhaes/knowledge-database/blob/master/kafka-zookeeper-cluster/3-monitoring-cluster/kafka)
+    * [Zookeeper](https://github.com/renantmagalhaes/knowledge-database/blob/master/kafka-zookeeper-cluster/3-monitoring-cluster/zookeeper)
+* [Cheat Sheet](https://github.com/renantmagalhaes/knowledge-database/tree/master/kafka-zookeeper-cluster/cheat-sheet)
 
 ### FOR PUBLIC CLOUDS
 Open ports:
