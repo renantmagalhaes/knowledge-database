@@ -1,7 +1,11 @@
  ##########################################################################################################################
 #                                           READ BEFORE PROCEED                                                             #
-#   Is required to read all the comments for this installation, there are some information that change according the node   #
+#   Is required to read all the comments for this installation, there are some information that change accordingly the node   #
  ##########################################################################################################################
+
+#DISCLAIMER
+# This is guide is not written in stone, take time to read it, and change according your needs
+# Also i run all the commands as root to facilitate the installation, in a true production environment is a good practice to create a specific user to run the services and host the files
 
 #update and upgrade the system
 sudo apt-get update \
@@ -76,14 +80,14 @@ EOF
 
 #Configue services
 ## Zookeeper
-vi /etc/init.d/zookeeper
-add content of zookeeper script init (edit DAEMON_PATH= and ZOO_CONF path accondinly)
+### edit DAEMON_PATH= and ZOO_CONF path accordingly)
+curl https://raw.githubusercontent.com/renantmagalhaes/knowledge-database/master/kafka-zookeeper-cluster/init-scripts/zookeeper-init-service.sh > /etc/init.d/zookeeper
 chmod +x /etc/init.d/zookeeper
 update-rc.d zookeeper defaults #(can ignore if any error appears)
 
 ## Kafka
-vi /etc/init.d/kafka
-add content of kafka script init (edit DAEMON_PATH= and KAFKA_CONF path accondinly)
+### edit DAEMON_PATH= and KAFKA_CONF path accordingly
+curl https://raw.githubusercontent.com/renantmagalhaes/knowledge-database/master/kafka-zookeeper-cluster/init-scripts/kafka-init-service.sh > /etc/init.d/kafka
 chmod +x /etc/init.d/kafka
 update-rc.d kafka defaults #(can ignore if any error appears)
 
