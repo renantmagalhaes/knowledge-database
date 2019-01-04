@@ -9,7 +9,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181/kafka
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
       # please replace this setting by the IP of your web tools server
-      SCHEMA_REGISTRY_HOST_NAME: "54.206.91.106"
+      SCHEMA_REGISTRY_HOST_NAME: "MY_PUBLIC_IP"
     restart: always
 
   # https://github.com/confluentinc/kafka-rest
@@ -22,7 +22,7 @@ services:
       KAFKA_REST_LISTENERS: http://0.0.0.0:8082/
       KAFKA_REST_SCHEMA_REGISTRY_URL: http://localhost:8081/
       # please replace this setting by the IP of your web tools server
-      KAFKA_REST_HOST_NAME: "54.206.91.106"
+      KAFKA_REST_HOST_NAME: "MY_PUBLIC_IP"
     depends_on:
       - confluent-schema-registry
     restart: always

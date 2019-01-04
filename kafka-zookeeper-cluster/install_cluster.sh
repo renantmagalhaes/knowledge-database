@@ -52,9 +52,9 @@ initLimit=10
 syncLimit=5
 dataDir=/root/data/zookeeper-data
 clientPort=2181
-server.1=host-1:2888:3888
-server.2=host-2:2888:3888
-server.3=host-3:2888:3888
+server.1=zookeeper-1:2888:3888
+server.2=zookeeper-2:2888:3888
+server.3=zookeeper-3:2888:3888
 EOF
 
 ## KAFKA config
@@ -62,7 +62,7 @@ EOF
 
 cat <<EOF > /root/bin/kafka/kafka_2.12-2.1.0/config/server.properties
 broker.id=1
-advertised.listeners=PLAINTEXT://host-1:9092
+advertised.listeners=PLAINTEXT://kafka-1:9092
 #delete.topic.enable=true
 log.dirs=/root/data/kafka-data
 num.partitions=8
@@ -73,7 +73,7 @@ log.segment.bytes=1073741824
 log.retention.check.interval.ms=300000
 zookeeper.connect=host-1:2181,host-2:2181,host-3:2181
 #/kafka at the end to create a folder named kafka
-#zookeeper.connect=host-1:2181,host-2:2181,host-3:2181/kafka
+#zookeeper.connect=zookeeper-1:2181,zookeeper-2:2181,zookeeper-3:2181/kafka
 zookeeper.connection.timeout.ms=6000
 auto.create.topics.enable=true
 EOF

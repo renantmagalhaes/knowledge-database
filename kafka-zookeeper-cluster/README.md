@@ -5,6 +5,14 @@ Is required to read all the comments for this installation, there are some infor
 - This is guide is not written in stone, take time to read it, and change according your needs
 - I use DNS entries to map my hosts, you can also use the private IP of the machines
 
+### Table of contents
+* Cluster Installation
+* Configure UI to management
+* How to monitor your cluster
+    * Kafka
+    * Zookeeper
+* Cheat Sheet
+
 ### FOR PUBLIC CLOUDS
 Open ports:
 
