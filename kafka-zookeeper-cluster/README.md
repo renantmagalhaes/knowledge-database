@@ -1,9 +1,9 @@
-# READ BEFORE PROCEED                                                             #
-# Is required to read all the comments for this installation, there are some information that change accordingly the node/host
+## READ BEFORE PROCEED                                                             #
+### Is required to read all the comments for this installation, there are some information that change accordingly the node/host
 
-# DISCLAIMER
-# This is guide is not written in stone, take time to read it, and change according your needs
-# I use DNS entries to map my hosts, you can also use the private IP of the machines
+## DISCLAIMER
+## This is guide is not written in stone, take time to read it, and change according your needs
+## I use DNS entries to map my hosts, you can also use the private IP of the machines
 
 #FOR PUBLIC CLOUDS
 Open ports
