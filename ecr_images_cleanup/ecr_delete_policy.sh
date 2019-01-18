@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #VARS
-DAYS_AGO=14
-REPOS=yourepo # If you have more than one repo prefix you can use repo1|repo2|repo3
-TAG=tags_to_delete #accept regex and multiple tags(separate with | )
+DAYS_AGO="14"
+REPOS="yourepo" # If you have more than one repo prefix you can use repo1|repo2|repo3
+TAG="tags_to_delete" #accept regex and multiple tags(separate with | )
 # You can also select all the tags that does NOT follow this pattern, for example:
 # [0-9]*\.[0-9]*\.[0-9]*\" this tag represents only major releases 1.0.0, 1.0.2, 3.10.5 and so on
 # if you want to use this script toto clean ALL tags without the major releases add a -v in the egrep "$TAG" section
