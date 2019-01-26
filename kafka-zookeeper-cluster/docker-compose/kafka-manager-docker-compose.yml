@@ -8,4 +8,4 @@ services:
     environment:
       ZOOKEEPER_HOSTS: "zookeeper1:2181,zookeeper2:2181,zookeeper3:2181"
       APPLICATION_SECRET: my_password
-    restart: always
+    restart: unless-stopped
