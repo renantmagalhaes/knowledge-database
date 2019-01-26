@@ -6,7 +6,9 @@
 ### ECR CLEANUP
 Script to cleanup AWS ECR repository.
 
-Nowadays the aws policy lifecycle is very limited to my use: 
+Nowadays the aws policy lifecycle is very limited to my use, like: 
 * Can ONLY use tags prefixes
 * Cannot use wildcard
 * And so on
+
+So this script looks to resolve this types of issues
