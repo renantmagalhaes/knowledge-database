@@ -22,10 +22,14 @@ scrape_configs:
       - 'tasks.kafka_exporter'
       type: 'A'
       port: 9308
-      
+    static_configs:
+    - targets:
+      - kafka-zookeeper-1:9308
+      - kafka-zookeeper-2:9308
+      - kafka-zookeeper-3:9308
   - job_name: 'kafka'
     static_configs:
     - targets:
-      - kafka-1:7072
-      - kafka-2:7072
-      - kafka-3:7072
+      - kafka-zookeeper-1:7072
+      - kafka-zookeeper-2:7072
+      - kafka-zookeeper-3:7072

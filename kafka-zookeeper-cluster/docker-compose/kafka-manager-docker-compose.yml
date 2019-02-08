@@ -1,11 +1,13 @@
-version: '2'
-
+version: '3.6'
 services:
-  # https://github.com/yahoo/kafka-manager
-  kafka-manager:
-    image: qnib/plain-kafka-manager
+# https://github.com/yahoo/kafka-manager
+  kafka_manager:
+    image: hlebalbau/kafka-manager:stable
     network_mode: host
+    ports:
+      - "9000:9000"
     environment:
-      ZOOKEEPER_HOSTS: "zookeeper1:2181,zookeeper2:2181,zookeeper3:2181"
-      APPLICATION_SECRET: my_password
+      ZK_HOSTS: "kafka-zookeeper-1:2181,kafka-zookeeper-2:2181,kafka-zookeeper-3:2181"
+      APPLICATION_SECRET: "random-secret"
+    command: -Dpidfile.path=/dev/null
     restart: unless-stopped

@@ -6,11 +6,11 @@ services:
     image: confluentinc/cp-schema-registry:5.1.0
     network_mode: host
     environment:
-      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
+      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: kafka-zookeeper-1:2181,kafka-zookeeper-2:2181,kafka-zookeeper-3:2181
       SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
-      # mudar o SCHEMA_REGISTRY_HOST_NAME pelo ip público do host que roda o serviço
+      # change o SCHEMA_REGISTRY_HOST_NAME for the public address that runs this service
       # curl ipinfo.io/ip
-      SCHEMA_REGISTRY_HOST_NAME: "18.232.161.11"
+      SCHEMA_REGISTRY_HOST_NAME: "PUBLIC_IP"
     restart: unless-stopped
 
   # https://github.com/confluentinc/kafka-rest
@@ -18,34 +18,26 @@ services:
     image: confluentinc/cp-kafka-rest:5.1.0
     network_mode: host
     environment:
-      KAFKA_REST_BOOTSTRAP_SERVERS: kafka1:9092,kafka2:9092,kafka3:9092
-      KAFKA_REST_ZOOKEEPER_CONNECT: zookeeper1:2181,zookeeper2:2181,zookeeper3:2181
+      KAFKA_REST_BOOTSTRAP_SERVERS: kafka-zookeeper-1:9092,kafka-zookeeper-2:9092,kafka-zookeeper-3:9092
+      KAFKA_REST_ZOOKEEPER_CONNECT: kafka-zookeeper-1:2181,kafka-zookeeper-2:2181,kafka-zookeeper-3:2181
       KAFKA_REST_LISTENERS: http://0.0.0.0:8082/
       KAFKA_REST_SCHEMA_REGISTRY_URL: http://localhost:8081/
+      KAFKA_REST_CONSUMER_REQUEST_TIMEOUT_MS: 1200000
       # please replace this setting by the IP of your web tools server
-      KAFKA_REST_HOST_NAME: "18.232.161.11"
+      KAFKA_REST_HOST_NAME: "54.145.35.7"
     depends_on:
       - confluent-schema-registry
     restart: unless-stopped
 
   # https://github.com/Landoop/kafka-topics-ui
   kafka-topics-ui:
-    image: landoop/kafka-topics-ui:0.9.4
+    image: landoop/kafka-topics-ui
     network_mode: host
     environment:
       KAFKA_REST_PROXY_URL: http://localhost:8082
+      MAX_BYTES: 500000
+      RECORD_POLL_TIMEOUT: 50000
       PROXY: "TRUE"
     depends_on:
       - confluent-rest-proxy
     restart: unless-stopped
-
-
-
-
-
-
-
-
-
-
-
