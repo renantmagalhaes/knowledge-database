@@ -12,16 +12,16 @@ killall pulseaudio
 
 
 #Fix a2dp profile
-touch /var/lib/gdm3/.config/pulse/client.conf
+touch /etc/pulse/client.conf
 
-cat <<EOF > /var/lib/gdm3/.config/pulse/client.conf
+cat <<EOF >> /etc/pulse/client.conf
 autospawn = no
 daemon-binary = /bin/true
 EOF
 
-chown Debian-gdm:Debian-gdm /var/lib/gdm3/.config/pulse/client.conf
+chown Debian-gdm:Debian-gdm /etc/pulse/client.conf
 
-rm /var/lib/gdm3/.config/systemd/user/sockets.target.wants/pulseaudio.socket
+rm /etc/pulse/.config/systemd/user/sockets.target.wants/pulseaudio.socket
 
 echo "load-module module-switch-on-connect" >> /etc/pulse/default.pa
 
