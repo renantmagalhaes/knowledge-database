@@ -3,3 +3,10 @@ kubectl edit -n kube-system configmap/aws-auth
 
 #Delete all Evicted pods at once.
 kubectl get pods -n default| grep Evicted | awk '{print $1}'  | xargs kubectl delete pod
+
+#Delete all Terminating pods
+kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0
+
+or
+
+kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0 --force
