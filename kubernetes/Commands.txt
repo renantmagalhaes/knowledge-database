@@ -9,7 +9,7 @@ kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubect
 Kubectl get nodes
 Kubectl label nodes $node_name hardware=$label_name
 
-## Inside deployment
+# Inside deployment
     spec:
       containers:
       - name: k8s-label
@@ -22,7 +22,7 @@ Kubectl label nodes $node_name hardware=$label_name
 
 kubectl get nodes --show-labelskubectl get nodes --show-labels
 
-## Health check
+# Health check
     spec:
       containers:
       - name: k8s-heath-check
@@ -42,4 +42,66 @@ kubectl get nodes --show-labelskubectl get nodes --show-labels
             port: port_name # or port number
           initialDelaySeconds: 15
           timeoutSeconds: 30
+
+# Lifecyle
+        lifecycle:
+          postStart:
+            exec:
+              command: ['sh', '-c', 'echo $(date +%s): postStart >> /timing && sleep 10 && echo $(date +%s): end postStart >> /timing']
+          preStop:
+            exec:
+              command: ['sh', '-c', 'echo $(date +%s): preStop >> /timing && sleep 10']
+
+
+# Secrets 
+
+## from file
+echo -n "root" > ./username.txt
+echo -n "password" > ./password.txt
+kubectl create secret generic db-user-pass --from-file=./username.txt —from-file=./password.txt
+secret "db-user-pass" created
+
+## from ssh key or cert 
+kubectl create secret generic ssl-certificate --from-file=ssh-privatekey=~/.ssh/id_rsa --ssl-cert-=ssl-cert=mysslcert.crt
+
+## from yaml
+echo -n "root" | base64
+cm9vdA==
+echo -n "password" | base64
+cGFzc3dvcmQ=
+
+apiVersion: v1
+kind: Secret
+metadata:
+name: db-secret
+type: Opaque
+data:
+password: cm9vdA==
+username: cGFzc3dvcmQ=
+
+kubectl create -f secrets-db-secret.yml
+
+## Using secrets
+env:
+- name: SECRET_USERNAME
+valueFrom:
+secretKeyRef:
+name: db-secret
+key: username
+- name: SECRET_PASSWORD
+
+### OR 
+
+volumeMounts:
+- name: credvolume
+mountPath: /etc/creds
+readOnly: true
+volumes:
+- name: credvolume
+secret:
+secretName: db-secrets
+
+The secrets will be stored in:
+/etc/creds/db-secrets/username
+/etc/creds/db-secrets/password
 
