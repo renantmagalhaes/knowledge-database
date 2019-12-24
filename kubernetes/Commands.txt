@@ -1,0 +1,45 @@
+# Delete all Evicted pods at once.
+kubectl get pods -n default| grep Evicted | awk '{print $1}'  | xargs kubectl delete pod
+
+# Delete all Terminating pods
+kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0
+kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0 --force
+
+# Node selector
+Kubectl get nodes
+Kubectl label nodes $node_name hardware=$label_name
+
+## Inside deployment
+    spec:
+      containers:
+      - name: k8s-label
+        image: dockerhub_image:latest
+        ports:
+        - name: docker_application
+          containerPort: 3000
+      nodeSelector:
+        hardware: label_name
+
+kubectl get nodes --show-labelskubectl get nodes --show-labels
+
+## Health check
+    spec:
+      containers:
+      - name: k8s-heath-check
+        image: dockerhub_image:latest
+        ports:
+        - name: port_name #optional
+          containerPort: 3000
+        livenessProbe:
+          httpGet:
+            path: /
+            port: port_name # or port number
+          initialDelaySeconds: 15
+          timeoutSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /
+            port: port_name # or port number
+          initialDelaySeconds: 15
+          timeoutSeconds: 30
+

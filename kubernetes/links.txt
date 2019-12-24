@@ -1,6 +1,6 @@
 =============Other Links===============
 
-Traefik netwoork config
+Traefik network config
 http://tutoriaisgnulinux.com/2017/12/11/configurando-o-treafik-no-cluster-kubernetes/
 
 
