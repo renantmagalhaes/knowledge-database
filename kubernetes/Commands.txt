@@ -105,3 +105,52 @@ The secrets will be stored in:
 /etc/creds/db-secrets/username
 /etc/creds/db-secrets/password
 
+# DNS 
+Inside the same pod, multiple containers can use localhost:port to communicate
+Otherwise need to use the service type. 
+
+## Communication between namespaces
+app1-service.default
+(service).(namespace name)
+Or full path
+app1-service.default.svc.cluster.local
+
+
+# ConfigMap
+Configuration parameters that are not secret, can be put in a ConfigMap
+key and values pairs
+
+cat <<EOF > app.properties
+driver=jdbc
+database=postgres
+lookandfeel=1
+otherparams=xyz
+param.with.hierarchy=xyz
+EOF
+
+kubectl create configmap app-config —from-file=app.properties
+Can use a a full configuration file, from nginx for example: kubectl create configmap app-config —from-file=nginx.config
+Get a configmap value
+kubectl get configmap
+kubectl get configmap $configmap_name -o yaml
+
+
+## Using configmap as volumeMounts
+volumeMounts:
+- name: config-volume
+mountPath: /etc/config
+volumes:
+- name: config-volume
+configMap:
+name: app-config
+
+## Using configmap as environment variables
+env:
+- name: DRIVER
+valueFrom:
+configMapKeyRef:
+name: app-config
+key: driver
+- name: DATABASE
+[...]
+
