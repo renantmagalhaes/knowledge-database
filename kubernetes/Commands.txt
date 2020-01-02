@@ -154,3 +154,133 @@ key: driver
 - name: DATABASE
 [...]
 
+
+## Pod preset
+apiVersion: settings.k8s.io/v1alpha1
+kind: PodPreset
+metadata:
+name: share-credential
+spec:
+selector:
+matchLabels:
+app: myapp
+env:
+- name: MY_SECRET
+value: "123456"
+volumeMounts:
+- mountPath: /share
+name: share-volume
+volumes:
+- name: share-volume
+emptyDir: {}
+
+
+# StatefulSets
+## Have stable pod hostname 
+## Your podname will have a sticky identity, using an index, e.g. podname-0
+podname-1 and podname-2 (and when a pod gets rescheduled, it’ll keep that
+identity)
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cassandra
+  labels:
+    app: cassandra
+spec:
+  serviceName: cassandra
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cassandra
+  template:
+    metadata:
+      labels:
+        app: cassandra
+    spec:
+      terminationGracePeriodSeconds: 1800
+      containers:
+      - name: cassandra
+        image: gcr.io/google-samples/cassandra:v13
+      [...]
+
+
+
+# Daemon Sets 
+## Daemon Sets ensure that every single node in the Kubernetes cluster runs the same pod resource
+## This is useful if you want to ensure that a certain pod is running on every single kubernetes node
+## When a node is added to the cluster, a new pod will be started automatically
+## Same when a node is removed, the pod will not be rescheduled on another node
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: monitoring-agent
+  labels:
+    app: monitoring-agent
+spec:
+  template:
+    metadata:
+      labels:
+        name: monitor-agent
+spec:
+  containers:
+  - name: k8s-demo
+  image: wardviaene/k8s-demo
+  ports:
+  - name: nodejs-port
+    containerPort: 3000
+
+# Autoscaling
+## kubectl get hpa
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hpa-example
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hpa-example
+  template:
+    metadata:
+      labels:
+        app: hpa-example
+    spec:
+      containers:
+      - name: hpa-example
+        image: gcr.io/google_containers/hpa-example
+        ports:
+        - name: http-port
+          containerPort: 80
+        resources:
+          requests:
+            cpu: 200m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hpa-example
+spec:
+  ports:
+  - port: 31001
+    nodePort: 31001
+    targetPort: http-port
+    protocol: TCP
+  selector:
+    app: hpa-example
+  type: NodePort
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hpa-example-autoscaler
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hpa-example
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 50
+
