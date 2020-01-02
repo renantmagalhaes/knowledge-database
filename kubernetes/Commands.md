@@ -6,18 +6,17 @@
 
 # Delete all Terminating pods
 
-```kubectl get pods -n default| grep Terminating | awk '{print $1}'  | ```xargs 
-```kubectl delete pod --grace-period=0```
-```kubectl get pods -n default| grep Terminating | awk '{print $1}'  | ```xargs 
-```kubectl delete pod --grace-period=0 --force```
+```kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0```
+```kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0 --force```
 
 # Node selector
-```
-kubectl get nodes
-kubectl label nodes $node_name hardware=$label_name
-```
+
+```kubectl get nodes```
+```kubectl label nodes $node_name hardware=$label_name```
 
 # Inside deployment
+```kubectl get nodes --show-labelskubectl get nodes --show-labels```
+```
     spec:
       containers:
       - name: k8s-label
@@ -27,8 +26,8 @@ kubectl label nodes $node_name hardware=$label_name
           containerPort: 3000
       nodeSelector:
         hardware: label_name
+```
 
-kubectl get nodes --show-labelskubectl get nodes --show-labels
 
 # Health check
 ```
@@ -112,7 +111,8 @@ key: username
 
 ## OR 
 
-```volumeMounts:
+```
+volumeMounts:
 - name: credvolume
 mountPath: /etc/creds
 readOnly: true
@@ -151,8 +151,12 @@ param.with.hierarchy=xyz
 EOF
 ```
 
-* kubectl create configmap app-config —from-file=app.properties
-* Can use a a full configuration file, from nginx for example: kubectl //create configmap app-config —from-file=nginx.config
+```kubectl create configmap app-config —from-file=app.properties```
+
+* Can use a a full configuration file, from nginx for example: 
+
+```kubectl //create configmap app-config —from-file=nginx.config```
+
 ### Get a configmap value
 ```kubectl get configmap```
 ```kubectl get configmap $configmap_name -o yaml```
@@ -182,6 +186,7 @@ key: driver
 ```
 
 ## Pod preset
+```
 apiVersion: settings.k8s.io/v1alpha1
 kind: PodPreset
 metadata:
@@ -199,11 +204,11 @@ name: share-volume
 volumes:
 - name: share-volume
 emptyDir: {}
-
+```
 
 # StatefulSets
-## Have stable pod hostname 
-## Your podname will have a sticky identity, using an index, e.g. podname-0
+* Have stable pod hostname 
+  * Your podname will have a sticky identity, using an index, e.g. podname-0
 podname-1 and podname-2 (and when a pod gets rescheduled, it’ll keep that
 identity)
 
@@ -233,11 +238,13 @@ spec:
 
 
 # Daemon Sets 
-## Daemon Sets ensure that every single node in the Kubernetes cluster runs the same pod resource
-## This is useful if you want to ensure that a certain pod is running on every single kubernetes node
-## When a node is added to the cluster, a new pod will be started automatically
-## Same when a node is removed, the pod will not be rescheduled on another node
+Daemon Sets ensure that every single node in the Kubernetes cluster runs the same pod resource
+This is useful if you want to ensure that a certain pod is running on every single kubernetes node
+When a node is added to the cluster, a new pod will be started automatically
+Same when a node is removed, the pod will not be rescheduled on another node
 apiVersion: extensions/v1beta1
+
+```
 kind: DaemonSet
 metadata:
   name: monitoring-agent
@@ -255,10 +262,12 @@ spec:
   ports:
   - name: nodejs-port
     containerPort: 3000
+```
 
 # Autoscaling
-## kubectl get hpa
+```kubectl get hpa```
 
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -309,12 +318,128 @@ spec:
   minReplicas: 1
   maxReplicas: 10
   targetCPUUtilizationPercentage: 50
+```
 
 # affinity and anti-affinity
-##There are currently 2 types you can use for node affinity:
-##1) requiredDuringSchedulingIgnoredDuringExecution
-##2) preferredDuringSchedulingIgnoredDuringExecution
-##The first one sets a hard requirement (like the nodeSelector)
-##The rules must be met before the pod can be scheduled
-##The second type will try to enforce the rule, but it will not guarantee it
-##Even if the rule is not met, the
+There are currently 2 types you can use for node affinity:
+* requiredDuringSchedulingIgnoredDuringExecution
+* preferredDuringSchedulingIgnoredDuringExecution
+
+The first one sets a hard requirement (like the nodeSelector)
+The rules must be met before the pod can be scheduled
+The second type will try to enforce the rule, but it will not guarantee it
+Even if the rule is not met, the pod can still be scheduled, it’s a soft
+requirement, a preference
+
+```
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: env
+                operator: In
+                values:
+                - dev
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: team
+                operator: In
+                values:
+                - engineering-project1
+[...]
+```
+# Interpod affinity and interpod anti-affinity
+* requiredDuringSchedulingIgnoredDuringExecution
+* preferredDuringSchedulingIgnoredDuringExecution
+
+```
+podAffinity:
+requiredDuringSchedulingIgnoredDuringExecution:
+- labelSelector:
+matchExpressions:
+- key: "app"
+operator: In
+values:
+- myapp
+topologyKey: "kubernetes.io/hostname"
+```
+
+```
+podAffinity:
+requiredDuringSchedulingIgnoredDuringExecution:
+- labelSelector:
+matchExpressions:
+- key: "app"
+operator: In
+values:
+- myapp
+topologyKey: "failure-domain.beta.kubernetes.io/zone"
+```
+
+```
+podAntiAffinity:
+requiredDuringSchedulingIgnoredDuringExecution:
+- labelSelector:
+matchExpressions:
+- key: "app"
+operator: In
+values:
+- myapp
+topologyKey: "kubernetes.io/hostname"
+```
+
+# Taints and tolerations
+
+Tolerations, is the opposite of node affinity
+
+Tolerations allow a node to repel a set of pods
+
+Taints mark a node, tolerations are applied to pods to influence the scheduling of the pods
+
+* One use case for taints is to make sure that when you create a new pod, they’re not scheduled on the master
+  * The master has a taint: (node-role.kubernetes.io/master:NoSchedule)
+
+```kubectl taint nodes node1 key=value:NoSchedule```
+
+```
+tolerations:
+- key: "key"
+  operator: "Equal"
+  value: "value"
+  effect: "NoSchedule"
+```
+
+```
+tolerations:
+- key: "key"
+  operator: "Equal"
+  value: "value"
+  effect: “NoExecute"
+  tolerationSeconds: 3600
+```
+
+```
+spec:
+  kubelet:
+    featureGates:
+      TaintNodesByCondition: "true"
+```
+
+```
+tolerations:
+- key: "node.alpha.kubernetes.io/unreachable"
+  operator: "Exists"
+  effect: "NoExecute"
+  tolerationSeconds: 6000
+```
+
+* node.kubernetes.io/not-ready: Node is not ready
+* node.kubernetes.io/unreachable: Node is unreachable from the node controller
+* node.kubernetes.io/out-of-disk: Node becomes out of disk.
+* node.kubernetes.io/memory-pressure: Node has memory pressure.
+* node.kubernetes.io/disk-pressure: Node has disk pressure.
+* node.kubernetes.io/network-unavailable: Node’s network is unavailable.
+* node.kubernetes.io/unschedulable: Node is unschedulable.
