@@ -6,7 +6,7 @@
 
 # Delete all Terminating pods
 
-``` kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0 ```
+``` kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0 ``` </br>
 
 ``` kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0 --force ```
 
@@ -239,11 +239,11 @@ spec:
 
 
 # Daemon Sets 
-  Daemon Sets ensure that every single node in the Kubernetes cluster runs the same pod resource
-  This is useful if you want to ensure that a certain pod is running on every single kubernetes node
-  When a node is added to the cluster, a new pod will be started automatically
-  Same when a node is removed, the pod will not be rescheduled on another node
-  apiVersion: extensions/v1beta1
+  Daemon Sets ensure that every single node in the Kubernetes cluster runs the same pod resource \
+  This is useful if you want to ensure that a certain pod is running on every single kubernetes node \
+  When a node is added to the cluster, a new pod will be started automatically \
+  Same when a node is removed, the pod will not be rescheduled on another node \
+  apiVersion: extensions/v1beta1 \
 
 ```
 kind: DaemonSet
