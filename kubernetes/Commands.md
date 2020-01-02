@@ -1,13 +1,21 @@
 # Delete all Evicted pods at once.
-kubectl get pods -n default| grep Evicted | awk '{print $1}'  | xargs kubectl delete pod
+
+```kubectl get pods -n default| grep Evicted | awk '{print $1}'  | xargs ```
+```kubectl delete pod```
+
 
 # Delete all Terminating pods
-kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0
-kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0 --force
+
+```kubectl get pods -n default| grep Terminating | awk '{print $1}'  | ```xargs 
+```kubectl delete pod --grace-period=0```
+```kubectl get pods -n default| grep Terminating | awk '{print $1}'  | ```xargs 
+```kubectl delete pod --grace-period=0 --force```
 
 # Node selector
-Kubectl get nodes
-Kubectl label nodes $node_name hardware=$label_name
+```
+kubectl get nodes
+kubectl label nodes $node_name hardware=$label_name
+```
 
 # Inside deployment
     spec:
@@ -23,6 +31,7 @@ Kubectl label nodes $node_name hardware=$label_name
 kubectl get nodes --show-labelskubectl get nodes --show-labels
 
 # Health check
+```
     spec:
       containers:
       - name: k8s-heath-check
@@ -42,8 +51,9 @@ kubectl get nodes --show-labelskubectl get nodes --show-labels
             port: port_name # or port number
           initialDelaySeconds: 15
           timeoutSeconds: 30
-
+```
 # Lifecyle
+```
         lifecycle:
           postStart:
             exec:
@@ -51,25 +61,32 @@ kubectl get nodes --show-labelskubectl get nodes --show-labels
           preStop:
             exec:
               command: ['sh', '-c', 'echo $(date +%s): preStop >> /timing && sleep 10']
-
+```
 
 # Secrets 
 
-## from file
+## From file
+
+```
 echo -n "root" > ./username.txt
 echo -n "password" > ./password.txt
 kubectl create secret generic db-user-pass --from-file=./username.txt —from-file=./password.txt
 secret "db-user-pass" created
+```
 
-## from ssh key or cert 
+## From ssh key or cert 
+```
 kubectl create secret generic ssl-certificate --from-file=ssh-privatekey=~/.ssh/id_rsa --ssl-cert-=ssl-cert=mysslcert.crt
+```
 
-## from yaml
+## From yaml
+```
 echo -n "root" | base64
 cm9vdA==
 echo -n "password" | base64
 cGFzc3dvcmQ=
-
+```
+```
 apiVersion: v1
 kind: Secret
 metadata:
@@ -78,10 +95,12 @@ type: Opaque
 data:
 password: cm9vdA==
 username: cGFzc3dvcmQ=
+```
 
-kubectl create -f secrets-db-secret.yml
+```kubectl create -f secrets-db-secret.yml```
 
 ## Using secrets
+```
 env:
 - name: SECRET_USERNAME
 valueFrom:
@@ -89,10 +108,11 @@ secretKeyRef:
 name: db-secret
 key: username
 - name: SECRET_PASSWORD
+```
 
-### OR 
+## OR 
 
-volumeMounts:
+```volumeMounts:
 - name: credvolume
 mountPath: /etc/creds
 readOnly: true
@@ -100,26 +120,28 @@ volumes:
 - name: credvolume
 secret:
 secretName: db-secrets
+```
 
-The secrets will be stored in:
-/etc/creds/db-secrets/username
-/etc/creds/db-secrets/password
+## The secrets will be stored in:
+* /etc/creds/db-secrets/username
+* /etc/creds/db-secrets/password
 
 # DNS 
 Inside the same pod, multiple containers can use localhost:port to communicate
 Otherwise need to use the service type. 
 
 ## Communication between namespaces
+
 app1-service.default
 (service).(namespace name)
 Or full path
 app1-service.default.svc.cluster.local
 
-
 # ConfigMap
 Configuration parameters that are not secret, can be put in a ConfigMap
 key and values pairs
 
+```
 cat <<EOF > app.properties
 driver=jdbc
 database=postgres
@@ -127,15 +149,17 @@ lookandfeel=1
 otherparams=xyz
 param.with.hierarchy=xyz
 EOF
+```
 
-kubectl create configmap app-config —from-file=app.properties
-Can use a a full configuration file, from nginx for example: kubectl create configmap app-config —from-file=nginx.config
-Get a configmap value
-kubectl get configmap
-kubectl get configmap $configmap_name -o yaml
-
+* kubectl create configmap app-config —from-file=app.properties
+* Can use a a full configuration file, from nginx for example: kubectl //create configmap app-config —from-file=nginx.config
+### Get a configmap value
+```kubectl get configmap```
+```kubectl get configmap $configmap_name -o yaml```
 
 ## Using configmap as volumeMounts
+
+```
 volumeMounts:
 - name: config-volume
 mountPath: /etc/config
@@ -143,8 +167,10 @@ volumes:
 - name: config-volume
 configMap:
 name: app-config
+```
 
 ## Using configmap as environment variables
+```
 env:
 - name: DRIVER
 valueFrom:
@@ -153,7 +179,7 @@ name: app-config
 key: driver
 - name: DATABASE
 [...]
-
+```
 
 ## Pod preset
 apiVersion: settings.k8s.io/v1alpha1
@@ -181,7 +207,7 @@ emptyDir: {}
 podname-1 and podname-2 (and when a pod gets rescheduled, it’ll keep that
 identity)
 
-apiVersion: apps/v1
+```apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: cassandra
@@ -203,7 +229,7 @@ spec:
       - name: cassandra
         image: gcr.io/google-samples/cassandra:v13
       [...]
-
+```
 
 
 # Daemon Sets 
@@ -284,3 +310,11 @@ spec:
   maxReplicas: 10
   targetCPUUtilizationPercentage: 50
 
+# affinity and anti-affinity
+##There are currently 2 types you can use for node affinity:
+##1) requiredDuringSchedulingIgnoredDuringExecution
+##2) preferredDuringSchedulingIgnoredDuringExecution
+##The first one sets a hard requirement (like the nodeSelector)
+##The rules must be met before the pod can be scheduled
+##The second type will try to enforce the rule, but it will not guarantee it
+##Even if the rule is not met, the
