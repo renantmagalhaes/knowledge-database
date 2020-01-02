@@ -128,7 +128,7 @@ secretName: db-secrets
 * /etc/creds/db-secrets/password
 
 # DNS 
-Inside the same pod, multiple containers can use localhost:port to communicate
+Inside the same pod, multiple containers can use localhost:port to communicate \
 Otherwise need to use the service type. 
 
 ## Communication between namespaces
@@ -140,7 +140,7 @@ app1-service.default.svc.cluster.local
 
 # ConfigMap
 Configuration parameters that are not secret, can be put in a ConfigMap
-key and values pairs
+* key and values pairs
 
 ```
 cat <<EOF > app.properties
@@ -239,11 +239,11 @@ spec:
 
 
 # Daemon Sets 
-  Daemon Sets ensure that every single node in the Kubernetes cluster runs the same pod resource \
-  This is useful if you want to ensure that a certain pod is running on every single kubernetes node \
-  When a node is added to the cluster, a new pod will be started automatically \
-  Same when a node is removed, the pod will not be rescheduled on another node \
-  apiVersion: extensions/v1beta1 \
+Daemon Sets ensure that every single node in the Kubernetes cluster runs the same pod resource \
+This is useful if you want to ensure that a certain pod is running on every single kubernetes node \
+When a node is added to the cluster, a new pod will be started automatically \
+Same when a node is removed, the pod will not be rescheduled on another node \
+apiVersion: extensions/v1beta1 \
 
 ```
 kind: DaemonSet
@@ -326,11 +326,11 @@ There are currently 2 types you can use for node affinity:
 * requiredDuringSchedulingIgnoredDuringExecution
 * preferredDuringSchedulingIgnoredDuringExecution
 
-  The first one sets a hard requirement (like the nodeSelector)
-  The rules must be met before the pod can be scheduled
-  The second type will try to enforce the rule, but it will not guarantee it
-  Even if the rule is not met, the pod can still be scheduled, it’s a soft
-  requirement, a preference
+The first one sets a hard requirement (like the nodeSelector) \
+The rules must be met before the pod can be scheduled \
+The second type will try to enforce the rule, but it will not guarantee it \
+Even if the rule is not met, the pod can still be scheduled, it’s a soft \
+requirement, a preference \
 
 ```
       affinity:
@@ -394,7 +394,7 @@ topologyKey: "kubernetes.io/hostname"
 
 # Taints and tolerations
 
-Tolerations, is the opposite of node affinity
+Tolerations, is the opposite of node affinity 
 
 Tolerations allow a node to repel a set of pods
 
