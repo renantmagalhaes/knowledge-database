@@ -6,8 +6,9 @@
 
 # Delete all Terminating pods
 
-```kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0```
-```kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0 --force```
+``` kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0 ```
+
+``` kubectl get pods -n default| grep Terminating | awk '{print $1}'  | xargs kubectl delete pod --grace-period=0 --force ```
 
 # Node selector
 
@@ -238,11 +239,11 @@ spec:
 
 
 # Daemon Sets 
-Daemon Sets ensure that every single node in the Kubernetes cluster runs the same pod resource
-This is useful if you want to ensure that a certain pod is running on every single kubernetes node
-When a node is added to the cluster, a new pod will be started automatically
-Same when a node is removed, the pod will not be rescheduled on another node
-apiVersion: extensions/v1beta1
+  Daemon Sets ensure that every single node in the Kubernetes cluster runs the same pod resource
+  This is useful if you want to ensure that a certain pod is running on every single kubernetes node
+  When a node is added to the cluster, a new pod will be started automatically
+  Same when a node is removed, the pod will not be rescheduled on another node
+  apiVersion: extensions/v1beta1
 
 ```
 kind: DaemonSet
@@ -325,11 +326,11 @@ There are currently 2 types you can use for node affinity:
 * requiredDuringSchedulingIgnoredDuringExecution
 * preferredDuringSchedulingIgnoredDuringExecution
 
-The first one sets a hard requirement (like the nodeSelector)
-The rules must be met before the pod can be scheduled
-The second type will try to enforce the rule, but it will not guarantee it
-Even if the rule is not met, the pod can still be scheduled, it’s a soft
-requirement, a preference
+  The first one sets a hard requirement (like the nodeSelector)
+  The rules must be met before the pod can be scheduled
+  The second type will try to enforce the rule, but it will not guarantee it
+  Even if the rule is not met, the pod can still be scheduled, it’s a soft
+  requirement, a preference
 
 ```
       affinity:
