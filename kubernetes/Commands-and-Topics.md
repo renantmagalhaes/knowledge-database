@@ -1,8 +1,7 @@
-# Delete all Evicted pods at once.
+# Delete all Evicted pods at once
 
-```kubectl get pods -n default| grep Evicted | awk '{print $1}'  | xargs ```
+```kubectl get pods -n default| grep Evicted | awk '{print $1}'  | xargs```
 ```kubectl delete pod```
-
 
 # Delete all Terminating pods
 
@@ -29,7 +28,6 @@
         hardware: label_name
 ```
 
-
 # Health check
 ```
     spec:
@@ -52,6 +50,7 @@
           initialDelaySeconds: 15
           timeoutSeconds: 30
 ```
+
 # Lifecyle
 ```
         lifecycle:
@@ -64,9 +63,7 @@
 ```
 
 # Secrets 
-
 ## From file
-
 ```
 echo -n "root" > ./username.txt
 echo -n "password" > ./password.txt
@@ -86,6 +83,7 @@ cm9vdA==
 echo -n "password" | base64
 cGFzc3dvcmQ=
 ```
+
 ```
 apiVersion: v1
 kind: Secret
