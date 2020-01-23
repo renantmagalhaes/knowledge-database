@@ -87,3 +87,23 @@ spec:
     type: Container
 ```
 
+# Namespaces
+
+## Create Namespace
+```
+kubectl create namespace NAMESPACENAME
+```
+
+## List Namespaces
+```
+kubectl get namespaces
+```
+
+## Set default namespace to k8s cli
+```
+export CONTEXT=$(kubectl config view | awk '/current-context/ {print $2}’)
+kubectl config set-context $CONTEXT —namespace=myspace
+```
+
+# User Management
+
