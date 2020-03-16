@@ -107,3 +107,25 @@ kubectl config set-context $CONTEXT —namespace=myspace
 
 # User Management
 
+For EKS (https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html)
+
+General (https://kubernetes.io/docs/reference/access-authn-authz/authorization/)
+
+* To limit access, you need to configure authorization
+  * AlwaysAllow / AlwaysDeny
+  * ABAC (Attribute-Based Access Control)
+  * RBAC (Role Based Access Control)
+  * Webhook (authorization by remote service)
+
+## Create new user
+```
+sudo apt install openssl
+openssl genrsa -out USER.pem 2048
+openssl req -new -key USER.pem -out USER-csr.pem -subj "/CN=USER/O=TEAM/"
+openssl x509 -req -in USER-csr.pem -CA ca.crt -CAkey ca.key -CAcreateserial -out USER.crt -days 10000
+```
+## add new context
+```
+kubectl config set-credentials USER --client-certificate=USER.crt --client-key=USER.pem
+kubectl config set-context USER --cluster=kubernetes.newtech.academy --user USER
+```
