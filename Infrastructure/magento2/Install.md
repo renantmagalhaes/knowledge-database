@@ -1,13 +1,24 @@
 # Install Packages
 
 ```
-sudo add-apt-repository ppa:ondrej/php
 sudo apt update
 sudo apt upgrade
 sudo hostnamectl set-hostname HOSTNAME
 sudo apt-get install apache2 mysql-server unzip
 sudo apt-get install software-properties-common
-sudo apt-get install php7.1 php7.1-common php7.1-mbstring php7.1-xmlrpc php7.1-soap php7.1-gd php7.1-xml php7.1-intl php7.1-mysql php7.1-cli php7.1-bcmath php7.1-mcrypt php7.1-ldap php7.1-zip php7.1-curl php7.1-bcmath -y
+sudo apt install php7.2 libapache2-mod-php7.2 php7.2-common php7.2-gmp php7.2-curl php7.2-soap php7.2-bcmath php7.2-intl php7.2-mbstring php7.2-xmlrpc php7.2-mcrypt php7.2-mysql php7.2-gd php7.2-xml php7.2-cli php7.2-zip
+```
+
+## Modify php.ini
+vi sudo nano /etc/php/7.2/apache2/php.ini
+
+```
+file_uploads = On
+allow_url_fopen = On
+short_open_tag = On
+memory_limit = 512M
+upload_max_filesize = 128M
+max_execution_time = 3600
 ```
 
 # Database Setup
