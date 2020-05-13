@@ -298,3 +298,127 @@ spec:
 ```
 
 # Retries
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-v3
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+        version: v3
+    spec:
+      containers:
+      - name: hello
+        image: wardviaene/http-echo
+        env:
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: TEXT
+          value: hello, this is $(MY_POD_NAME)
+        ports:
+        - name: http
+          containerPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-v3-latency
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+        version: v3
+    spec:
+      containers:
+      - name: hello
+        image: wardviaene/http-echo
+        env:
+        - name: MY_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: TEXT
+          value: hello, this is $(MY_POD_NAME)
+        - name: LATENCY
+          value: "5"
+        ports:
+        - name: http
+          containerPort: 8080
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: hello
+spec:
+  host: hello.default.svc.cluster.local
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+  - name: v3
+    labels:
+      version: v3
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: helloworld-v3
+spec:
+  hosts:
+  - "hello-v3.example.com"
+  gateways:
+  - helloworld-gateway
+  http:
+  - route: # default route for hello.example.com
+    - destination:
+        host: hello.default.svc.cluster.local
+        subset: v3 # match v3 only
+        port:
+          number: 8080
+    timeout: 10s
+    retries:
+      attempts: 2
+      perTryTimeout: 2s
+```
+
+# Security
+
+## Mutual TLS
+
+* The goals of Istio security are (source: https://istio.io/docs/concepts/security/#authentication)
+  * Security by default: no changes needed for application code and infrastructure
+  * Defense in depth: integrate with existing security systems to provide multiple layers of defense
+  * Zero-trust network: build security solutions on untrusted networks
+  
+* Istio provides two types of authentication:
+  * Transport authentication (service to service authentication) using Mutual TLS
+  * Origin authentication (end-user authentication)
+   2.1 Verifying the end-user using a JSON Web Token (JWT)
+
+* Mutual TLS in Istio:
+  Can be turned on without having to change the code of applications (because of the sidecar deployment
+
+* It provides each service with a strong identity
+  * Attacks like impersonation by rerouting DNS records will fail, because a fake application can’t prove its identity using the certificate mechanism
+
+* Secures (encrypts) service-to-service and end-user-to-service communication
+
+* Provides key and certificate management to manage generation, distribution,and rotation
+
