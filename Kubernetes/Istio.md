@@ -210,5 +210,91 @@ spec:
           number: 8080
 ```
 
-# Traffic routing (hello world v2)
+# Advanced routing
 
+```
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: hello
+spec:
+  host: hello.default.svc.cluster.local
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: helloworld
+spec:
+  hosts:
+  - "hello.example.com"
+  gateways:
+  - helloworld-gateway
+  http:
+  - match:
+    - headers:
+        end-user:
+          exact: john
+    route:
+    - destination:
+        host: hello.default.svc.cluster.local
+        subset: v2 # match v2 only
+        port:
+          number: 8080
+  - route: # default route for hello.example.com
+    - destination:
+        host: hello.default.svc.cluster.local
+        subset: v1 # match v1 only
+        port:
+          number: 8080
+```
+
+# Canary Deployments (weight distribution)
+
+```
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: hello
+spec:
+  host: hello.default.svc.cluster.local
+  subsets:
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: helloworld
+spec:
+  hosts:
+  - "hello.example.com"
+  gateways:
+  - helloworld-gateway
+  http:
+  - route:
+    - destination:
+        host: hello.default.svc.cluster.local
+        subset: v1
+        port:
+          number: 8080
+      weight: 90
+    - destination:
+        host: hello.default.svc.cluster.local
+        subset: v2
+        port:
+          number: 8080
+      weight: 10
+```
+
+# Retries
