@@ -33,3 +33,19 @@ Apache NiFi supports powerful and scalable directed graphs of data routing, tran
 * Not for Aggregations
 * Not an ETL Tool (but can be part of a ETL solution)
 
+# Get Apache NiFi
+
+* Binaries
+```
+https://nifi.apache.org/download.html
+```
+
+* Docker 
+```
+https://hub.docker.com/r/apache/nifi/
+```
+
+# User Guide
+```
+https://nifi.apache.org/docs/nifi-docs/html/user-guide.html
+``` 
