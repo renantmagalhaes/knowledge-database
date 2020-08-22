@@ -12,6 +12,6 @@ services:
     expose:
       - '3306'
     volumes:
-      - my-db:/var/lib/mysql
+      - my-db-5:/var/lib/mysql
 volumes:
-  my-db:
+  my-db-5:
