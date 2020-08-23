@@ -31,7 +31,7 @@ INSERT INTO table_name (field) VALUES ('new_value_of_the_field');
 - Insert multiple values at time
 
 ```
-INSERT INTO table_name (field1, field2, field2) VALUES ('value1', value 2, value3);
+INSERT INTO table_name (field1, field2, field3) VALUES ('value1', value 2, value3);
 ```
 
 ### UPDATE
