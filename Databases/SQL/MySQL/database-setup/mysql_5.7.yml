@@ -1,6 +1,6 @@
 version: '3.3'
 services:
-  db:
+  my-db-5:
     image: mysql:5.7
     environment:
       MYSQL_DATABASE: 'db'
