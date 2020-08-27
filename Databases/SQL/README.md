@@ -114,3 +114,12 @@ Used to remove or restrain the capacity of a user execute operations
 REVOKE CREATE TABLE FROM username;
 ```
 
+## DTL - Data Transaction Language
+#### BEGIN
+Set the beginning of an transaction, this transaction can be completed or not. 
+
+#### COMMIT
+Finishes a transaction.
+
+#### ROLLBACK
+Make all the changes since the last COMMIT be discarded
