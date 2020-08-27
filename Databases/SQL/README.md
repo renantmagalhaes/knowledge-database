@@ -4,7 +4,6 @@
 
 ### SELECT
 
-
 ```
 SELECT * FROM table_name;
 ```
@@ -97,3 +96,21 @@ DROP DATABASE finances;
 ```
 DROP TABLE product_type;
 ```
+
+## DCL - Data Control Language
+Aspects of data and users permission to control who has access to manipulated data within the database.
+
+### GRANT
+Used to authorize an user to execute or set operations in the database
+#### Select
+```
+GRANT SELECT ON product_type TO username;
+```
+
+### REVOKE
+
+Used to remove or restrain the capacity of a user execute operations
+```
+REVOKE CREATE TABLE FROM username;
+```
+
