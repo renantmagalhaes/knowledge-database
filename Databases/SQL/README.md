@@ -65,4 +65,35 @@ example: DELETE FROM product_types WHERE code = 3;
 
 ```Always use WHERE when using a DELETE, if not ALL values will be erased``` 
 
-# DDL - Data Definition Language
+## DDL - Data Definition Language
+
+### CREATE
+To create a database, table or other objects
+
+#### Database
+```
+CREATE DATABASE finances;
+
+```
+#### Table
+```
+CREATE TABLE product_type (code INT PRIMARY KEY, description VARCHAR(50));
+```
+
+### ALTER
+To alter a the table structure or other object inside a database
+```
+ALTER TABLE product_type ADD weight DECIMAL(8,2);
+```
+
+### DROP
+Used to erase a database, table, or other objects
+
+#### Database
+```
+DROP DATABASE finances;
+```
+#### Table
+```
+DROP TABLE product_type;
+```
