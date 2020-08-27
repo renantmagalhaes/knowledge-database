@@ -117,9 +117,30 @@ REVOKE CREATE TABLE FROM username;
 ## DTL - Data Transaction Language
 #### BEGIN
 Set the beginning of an transaction, this transaction can be completed or not. 
+```
+CREATE TABLE 'product_type' (codigo INT PRIMARY KEY, description VARCHAR(50));
+BEGIN TRANSACTION; -- start the transaction
+INSERT INTO product_type VALUES ('Notebook');
+INSERT INTO product_type VALUES ('Nobreak');
+COMMIT; -- finish and record the transaction
+```
 
 #### COMMIT
 Finishes a transaction.
+```
+CREATE TABLE 'product_type' (codigo INT PRIMARY KEY, description VARCHAR(50));
+BEGIN TRANSACTION; -- start the transaction
+INSERT INTO product_type VALUES ('Notebook');
+INSERT INTO product_type VALUES ('Nobreak');
+COMMIT; -- finish and record the transaction
+```
 
 #### ROLLBACK
 Make all the changes since the last COMMIT be discarded
+```
+CREATE TABLE 'product_type' (codigo INT PRIMARY KEY, description VARCHAR(50));
+BEGIN TRANSACTION; -- start the transaction
+INSERT INTO product_type VALUES ('Notebook');
+INSERT INTO product_type VALUES ('Nobreak');
+ROLLBACK; -- all changes since the last BEGIN are undone
+```
