@@ -144,3 +144,6 @@ INSERT INTO product_type VALUES ('Notebook');
 INSERT INTO product_type VALUES ('Nobreak');
 ROLLBACK; -- all changes since the last BEGIN are undone
 ```
+---
+
+
