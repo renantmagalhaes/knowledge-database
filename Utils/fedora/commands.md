@@ -17,4 +17,4 @@
 ```rpm -ql <package_name>```
 
 ### Package log information
-```rpm -q --changes <packag_name>```
+```rpm -q --changes <package_name>```
