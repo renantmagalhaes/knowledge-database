@@ -58,7 +58,7 @@ example: UPDATE product set description = 'Notebook', price = 2.800 WHERE code =
 
 **Warning**
 
-```Always use WHERE when using a UPDATE, if not ALL values will be updated``` 
+```Always use WHERE when doing a UPDATE, if not ALL values will be updated``` 
 
 ### DELETE
 - To remove the registries of a table
@@ -70,7 +70,7 @@ example: DELETE FROM product_types WHERE code = 3;
 
 **Warning**
 
-```Always use WHERE when using a DELETE, if not ALL values will be erased``` 
+```Always use WHERE when doing a DELETE, if not ALL values will be erased``` 
 
 ## DDL - Data Definition Language
 
