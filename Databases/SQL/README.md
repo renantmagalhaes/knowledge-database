@@ -24,6 +24,7 @@ SELECT p.code AS Cod, p.description AS Desc, p.price AS Pri, pt.description AS T
 FROM products AS p, product_type AS pt
 WHERE p.product_type_code = pt.code;
   ```
+  * Always use WHERE in a multiple table query.
 
 ## DML - Data Manipulation Language
 
