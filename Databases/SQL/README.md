@@ -18,6 +18,13 @@ SELECT field1, field2 FROM table_name;
 SELECT p.code AS cod, p.description AS desc, p.price AS pri, p.product_code AS pd FROM products AS p; 
 ```
 
+## Select in multiple tables
+  ```
+SELECT p.code AS Cod, p.description AS Desc, p.price AS Pri, pt.description AS Type
+FROM products AS p, product_type AS pt
+WHERE p.product_type_code = pt.code;
+  ```
+
 ## DML - Data Manipulation Language
 
 ### INSERT
