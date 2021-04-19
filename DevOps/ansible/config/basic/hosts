@@ -1,0 +1,9 @@
+[servergroup]
+server1
+server2
+server3
+
+[hostgroup]
+host1
+host2
+host3
