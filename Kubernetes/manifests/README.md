@@ -31,6 +31,8 @@ minikube ip
 /etc/hosts
 ```
 
+- Run (edit the 192.168.49.2 for your return of minikube ip)
+
 ```
 sudo /bin/sh -c 'echo "192.168.49.2    demo-container.local" >> /etc/hosts'
 ```
