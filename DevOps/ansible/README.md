@@ -92,3 +92,8 @@ ansible '*' -m ping -o
 ```
 ansible all --list-hosts -o
 ```
+
+- Overwrite variable
+```
+ansible all -m ping -e 'ansible_port=2222' -o
+```

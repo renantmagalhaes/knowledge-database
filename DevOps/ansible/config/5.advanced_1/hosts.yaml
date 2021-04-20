@@ -1,0 +1,26 @@
+---
+control:
+  hosts:
+    localhost:
+      ansible_connection: local
+server:
+  hosts:
+    server1:
+      ansible_port: 2222
+    server2:
+    server3:
+  vars:
+    ansible_user: root
+host:
+  hosts:
+    host1:
+    host2:
+    host3:
+  vars:
+    ansible_become: true
+    ansible_become_pass: password
+linux:
+  children:
+    server:
+    host:
+...

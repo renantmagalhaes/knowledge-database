@@ -1,0 +1,9 @@
+[control]
+localhost ansible_connection=local
+
+[server]
+server1 ansible_user=root ansible_port=2222
+server[2:3] ansible_user=root
+
+[host]
+host[1:3] ansible_become=true ansible_become_pass=password
