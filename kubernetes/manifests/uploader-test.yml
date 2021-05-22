@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ainda-upload-test
+  namespace: "prod"
+ # annotations:
+ #   #service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:eu-central-1:869076451876:certificate/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  labels:
+    name: ainda-upload-test
+    app: xsensors
+spec:
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+  selector:
+    svc: ainda-upload-test
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ainda-upload-test
+  namespace: "prod"
+  labels:
+    app: xsensors
+    keel.sh/policy: all
+    keel.sh/trigger: poll
+    keel.sh/approvals: "1"
+spec:
+  selector:
+    matchLabels:
+      app: xsensors
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: xsensors
+        svc: ainda-upload-test
+    spec:
+      containers:
+        - name: ainda-upload-test
+          image: psitrax/psitransfer
+          ports:
+            - containerPort: 3000
+          #lifecycle:
+          #  postStart:
+          #    exec:
+          #      command: ["sh", "-c", "/root/script.sh"]
+          env:
+            - name: PSITRANSFER_ADMIN_PASS
+              value: "secret"
+#          readinessProbe:
+#            httpGet:
+#              path: /health
+#              port: 8080
+#            initialDelaySeconds: 120
+#            timeoutSeconds: 5
+#          livenessProbe:
+#            httpGet:
+#              path: /liveness
+#              port: 8080
+#            initialDelaySeconds: 130
+#            timeoutSeconds: 10
+#            failureThreshold: 10          
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "200m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
+---
