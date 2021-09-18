@@ -1,4 +1,4 @@
-=== Linux + by CompTIA e LPIC-1 and  ===
+# Linux + by CompTIA e LPIC-1
 Prova > LX0-103 e LX0-104
 
 Prova 101 (LPI) e 103 (CompTIA)
@@ -7,11 +7,11 @@ Prova 101 (LPI) e 103 (CompTIA)
 Prova 102 (LPI) e 104(CompTIA)
 + 6 tópicos
 
-=== Softwares Utilizados ===
+## Softwares Utilizados 
 Oracle VM VirtualBox 5.2 rodando em cima de um Debian 9
 Emulando um CentOS 7 (Server Infrastructure)
 
-== Configuraçes da máquina ==
+## Configuraçes da máquina 
 [CentOS7]
 1 CPU
 1024 RAM
@@ -22,14 +22,14 @@ Emulando um CentOS 7 (Server Infrastructure)
   8GB - Não alocado
 
 
-== Comandos ==
+# Comandos 
 
 Comandos - type / path
 
 Internos - Imbutido no shell (builtin)
 Externos - Programa externo (hashed) dentro do $PATH
 Script - Sequencia logica de comandos
-
+```
 [root@centos7 ~]# type echo
 echo is a shell builtin
 [root@centos7 ~]# type cd
@@ -38,27 +38,30 @@ cd is a shell builtin
 clear is /usr/bin/clear
 [root@centos7 ~]# type tar
 tar is hashed (/usr/bin/tar)
-
-
+```
+```
 [root@centos7 ~]# echo $PATH
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin
+```
 
-== Variavel ==
+## Variavel 
 
 [Local] - Somente na sessão atual
-
+```
 [root@centos7 ~]# VAR_NAME=nome_da_variavel
 [root@centos7 ~]# echo $VAR_NAME
 nome_da_variavel
+```
 
 [Global] 
+
 Para transformar ela em uma variável global. (Porém somente para processos originados a partir deste bash)
 export VAR_NAME
 
 Mostrando variáveis:
 set - todas as variáveis 
 env - somente variáveis globais
-
+```
 [root@centos7 ~]# type set
 set is a shell builtin
 [root@centos7 ~]# type env
@@ -70,7 +73,7 @@ echo "O script le e imprime o valor da variavel TESTE"
 echo " "
 echo "O valor da variavel TESTE é:" $TESTE
 
-
+```
 [root@centos7 Exercicios]# export TESTE=123
 [root@centos7 Exercicios]# ./Script_Variavel.sh
 O script le e imprime o valor da variavel TESTE
@@ -83,7 +86,7 @@ O valor da variavel TESTE é: 111111
 [root@centos7 Exercicios]# echo $TESTE
 123
 
-== Filtros de texto ==
+ Filtros de texto 
 
  [cat] 
 
@@ -120,6 +123,7 @@ O valor da variavel TESTE é: 111111
     -v, --verbose            sempre emitir cabeçalhos com nomes dos arquivos
 
 [tail]
+
     -c, --bytes=K            output the last K bytes; or use -c +K to output
                                bytes starting with the Kth of each file
     -f, --follow[={name|descriptor}]
@@ -150,6 +154,7 @@ O valor da variavel TESTE é: 111111
 Paginação
 
 [wc]  
+```
     -c, --bytes            print the byte counts
     -m, --chars            print the character counts
     -l, --lines            print the newline counts
@@ -158,13 +163,13 @@ Paginação
                             If F is - then read names from standard input
     -L, --max-line-length  print the length of the longest line
     -w, --words            print the word counts
-
+```
 [nl]
 
 número de linhas
 
 [sort]
-
+```
 -k2 ordena pelo segundo campo
   -b, --ignore-leading-blanks  ignora espaços-brancos iniciais
   -d, --dictionary-order      considera apenas espaços-brancos e caracteres
@@ -183,7 +188,7 @@ número de linhas
                                 numeric -n, random -R, version -V
   -V, --version-sort          natural sort of (version) numbers within text
 
-
+```
 [uniq]
 
 
