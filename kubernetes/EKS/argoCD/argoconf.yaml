@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-argo-application
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/renantmagalhaes/argocd-demo.git
+    targetRevision: HEAD
+    path: manifests
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: nginx-app
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true #automatically keep repo and cluster in sync, meaning no manual edit is possible
+      prune: true # can delete resources in the cluster
