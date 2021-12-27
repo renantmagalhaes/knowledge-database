@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "backend-deployment"
+spec:
+  selector:
+    matchLabels:
+      app: "backend"
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: "backend"
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: "backend"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - name: persistent-storage
+            mountPath: /data
+      volumes:
+        - name: persistent-storage
+          persistentVolumeClaim:
+            claimName: efs-claim-2
