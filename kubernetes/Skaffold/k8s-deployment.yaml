@@ -1,0 +1,41 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: skaffold-demo
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: skaffold-demo
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skaffold-demo
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
+      maxSurge: 2
+  selector:
+    matchLabels:
+      app: skaffold-demo
+  template:
+    metadata:
+      labels:
+        app: skaffold-demo
+    spec:
+      containers:
+        - name: skaffold-demo
+          image: renantmagalhaes/skaffold-demo
+          securityContext:
+            privileged: false
+            #readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+          ports:
+            - containerPort: 80
