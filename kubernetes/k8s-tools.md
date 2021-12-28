@@ -14,6 +14,7 @@
 
 # Security
 
+- [Kubescape](https://github.com/armosec/kubescape)
 - Twistlock
 - aqua
 - NeuVector
