@@ -50,10 +50,18 @@ Use "skaffold options" for a list of global command-line options (applies to all
 
 ```
 
+# skaffold.yaml
 
-# Demo
+[References](https://skaffold.dev/docs/references/yaml/)
 
-1. Set skaffold.yaml and k8s-pod with your Dockerrepo name
+
+# Demo 1 - DEV
+
+1. Set skaffold.yaml and k8s-pod with your Docker repo name
 2. Docker login
 3. skaffold dev
 4. Change index.html and save file
+
+# Demo 2 - Prod
+
+`under construction`
