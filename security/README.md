@@ -10,6 +10,7 @@ If it were not an important area, cinema would not invest so much in espionage f
 - [awesome-security - Github](https://github.com/sbilly/awesome-security)
 - [Awesome Cyber Security](https://github.com/fabionoth/awesome-cyber-security)
 - [Awesome Pentest](https://github.com/enaqx/awesome-pentest)
+- [Awesome Hacking](https://github.com/Hack-with-Github/Awesome-Hacking)
 - [awesome-web-security - Github](https://github.com/qazbnm456/awesome-web-security)
 - [Security List - Github](https://github.com/zbetcheckin/Security_list)
 - [cert.br](https://www.cert.br/links/)
