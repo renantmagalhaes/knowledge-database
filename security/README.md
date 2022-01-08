@@ -14,6 +14,7 @@ If it were not an important area, cinema would not invest so much in espionage f
 - [awesome-web-security - Github](https://github.com/qazbnm456/awesome-web-security)
 - [Security List - Github](https://github.com/zbetcheckin/Security_list)
 - [cert.br](https://www.cert.br/links/)
+- [OSCE³ Study Guide](https://github.com/CyberSecurityUP/OSCE-Complete-Guide)
 
 ## Starting
 
