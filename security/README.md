@@ -31,7 +31,17 @@ If it were not an important area, cinema would not invest so much in espionage f
 - [HackTheBox](https://www.hackthebox.com)
 - [Vuln Hub](https://www.vulnhub.com)
 - [TryHackMe](https://tryhackme.com)
+- [Hacksplaining](https://www.hacksplaining.com/lessons)
+- [Explotation Education](https://exploit.education/)
 - [offensive security Labs](https://www.offensive-security.com/labs/individual/)
+- [Attack-Defence](https://attackdefense.com/)
+- [alert(1) to win](https://alf.nu/alert1)
+- [CTF Komodo Security](https://ctf.komodosec.com/)
+- [CryptoHack](https://cryptohack.org/)
+- [cmdchallenge](https://cmdchallenge.com/)
+- [Google CTF](https://capturetheflag.withgoogle.com/)
+- [Defend the web](https://defendtheweb.net/)
+- [Hacker 101](https://ctf.hacker101.com/)
 ## SSE
 
 - [Splunk SSE Content](https://docs.splunksecurityessentials.com/content-detail/)
