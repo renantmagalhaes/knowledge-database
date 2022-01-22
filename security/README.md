@@ -14,7 +14,6 @@ If it were not an important area, cinema would not invest so much in espionage f
 - [awesome-web-security - Github](https://github.com/qazbnm456/awesome-web-security)
 - [Security List - Github](https://github.com/zbetcheckin/Security_list)
 - [cert.br](https://www.cert.br/links/)
-- [OSCE³ Study Guide](https://github.com/CyberSecurityUP/OSCE-Complete-Guide)
 
 ## Starting
 
@@ -32,8 +31,10 @@ If it were not an important area, cinema would not invest so much in espionage f
 - [Vuln Hub](https://www.vulnhub.com)
 - [TryHackMe](https://tryhackme.com)
 - [Hacksplaining](https://www.hacksplaining.com/lessons)
+- [HackerRank](https://www.hackerrank.com/dashboard)
 - [Explotation Education](https://exploit.education/)
 - [offensive security Labs](https://www.offensive-security.com/labs/individual/)
+- [capturetheflag BR](https://capturetheflag.com.br/login.php)
 - [Attack-Defence](https://attackdefense.com/)
 - [alert(1) to win](https://alf.nu/alert1)
 - [CTF Komodo Security](https://ctf.komodosec.com/)
@@ -42,6 +43,14 @@ If it were not an important area, cinema would not invest so much in espionage f
 - [Google CTF](https://capturetheflag.withgoogle.com/)
 - [Defend the web](https://defendtheweb.net/)
 - [Hacker 101](https://ctf.hacker101.com/)
+- [Over the wire](https://overthewire.org/wargames/)
+-  [The Cryptopals Crypto Challenges](https://cryptopals.com)
+-  [W3Challs](https://w3challs.com) 
+- [Root-Me](https://www.root-me.org)
+- [Root in Jail](http://rootinjail.com)
+- [amanhardikar](https://www.amanhardikar.com/mindmaps/Practice.html)
+- [pwnable](https://pwnable.kr/play.php)
+
 ## SSE
 
 - [Splunk SSE Content](https://docs.splunksecurityessentials.com/content-detail/)
@@ -49,11 +58,19 @@ If it were not an important area, cinema would not invest so much in espionage f
 ## Red Team
 
 - [Awesome-Red-Team-Operations](https://github.com/CyberSecurityUP/Awesome-Red-Team-Operations)
+- [PenTest and Red Teams Tools by Joas and S3cur3Th1sSh1t](https://github.com/CyberSecurityUP/Awesome-Red-Team-Operations)
 
 ## Blue Team
 
 - [Blueteamlabs](https://blueteamlabs.online)
 - [awesome-cybersecurity-blueteam](https://github.com/fabacab/awesome-cybersecurity-blueteam)
+
+# Certification material
+
+- [OSCP Survival Guide by Joas](https://github.com/CyberSecurityUP/OSCP-Survival-Guide)
+- [OSCE³ Study Guide](https://github.com/CyberSecurityUP/OSCE-Complete-Guide)
+- [eCXD prep](https://github.com/CyberSecurityUP/eCXD-Preparation)
+- [eWPTX prep](https://github.com/CyberSecurityUP/eWPTX-Preparation)
 
 ## Extra Materials
 
@@ -66,3 +83,8 @@ If it were not an important area, cinema would not invest so much in espionage f
 - [alex-bellon - cybersecurity-resources](https://github.com/alex-bellon/cybersecurity-resources)
 - [CSIRT-MU/edu-resoures](https://github.com/CSIRT-MU/edu-resources)
 - [Tool sets](https://github.com/sbilly/awesome-security)
+
+- Nubank test
+```
+docker run  nubank/systems-engineer
+```
