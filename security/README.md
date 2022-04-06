@@ -23,6 +23,18 @@ If it were not an important area, cinema would not invest so much in espionage f
 
 - [Cyber-Labs-Get-Started](https://github.com/Cyber-Labs/Cyber-Labs-Get-Started)
 
+## Best search engines for Pentesters and Security Professionals
+
+- [Shodan](https://www.shodan.io)
+- [Hunter.io](https://hunter.io)
+- [ZoomEye](https://www.zoomeye.org)
+- [WiGLE](https://www.wigle.net)
+- [PublicWWW](https://publicwww.com)
+- [Pulsedive](https://pulsedive.com)
+- [IntelX](https://intelx.io)
+- [viz.greynoise](https://www.greynoise.io/viz)
+- [Censys](https://censys.io)
+
 ## CTF
 
 - [awesome-ctf](https://github.com/apsdehal/awesome-ctf)
@@ -75,7 +87,6 @@ If it were not an important area, cinema would not invest so much in espionage f
 - [OSCE³ Study Guide](https://github.com/CyberSecurityUP/OSCE-Complete-Guide)
 - [eCXD prep](https://github.com/CyberSecurityUP/eCXD-Preparation)
 - [eWPTX prep](https://github.com/CyberSecurityUP/eWPTX-Preparation)
-
 ## Extra Materials
 
 - [Cyber Sec Resources](https://github.com/scspcommunity/Cyber-Sec-Resources)
