@@ -87,6 +87,28 @@ If it were not an important area, cinema would not invest so much in espionage f
 - [OSCE³ Study Guide](https://github.com/CyberSecurityUP/OSCE-Complete-Guide)
 - [eCXD prep](https://github.com/CyberSecurityUP/eCXD-Preparation)
 - [eWPTX prep](https://github.com/CyberSecurityUP/eWPTX-Preparation)
+
+# Certifications
+
+[ROADMAP](https://pauljerimy.com/security-certification-roadmap/)
+
+- Security+ = CompTIA
+- CySA+ = CompTIA
+- CSA = EC-Council
+- BTL1 = Security Blue Team
+- CHFI = EC-Council
+- ECIH = EC-Council
+- eCTHP = eLearnSecurity
+- eCMAP = eLearnSecurity
+- eNDP = eLearnSecurity
+- eCDFP = eLearnSecurity
+- eCRE = eLearnSecurity
+- CEH = EC-Council
+- SOC200 = Offensive Security
+- CyberOps = Cisco
+- SOC Analyst = Microsoft
+- GSOC = GIAC
+- PenTest+ = CompTIA
 ## Extra Materials
 
 - [Cyber Sec Resources](https://github.com/scspcommunity/Cyber-Sec-Resources)
