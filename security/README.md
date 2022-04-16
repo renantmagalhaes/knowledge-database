@@ -46,6 +46,7 @@ If it were not an important area, cinema would not invest so much in espionage f
 - [HackTheBox](https://www.hackthebox.com)
 - [Vuln Hub](https://www.vulnhub.com)
 - [TryHackMe](https://tryhackme.com)
+- [OWASP WrongSecrets](https://github.com/commjoen/wrongsecrets)
 - [Hacksplaining](https://www.hacksplaining.com/lessons)
 - [HackerRank](https://www.hackerrank.com/dashboard)
 - [Explotation Education](https://exploit.education/)
