@@ -76,6 +76,8 @@ If it were not an important area, cinema would not invest so much in espionage f
 
 - [Awesome-Red-Team-Operations](https://github.com/CyberSecurityUP/Awesome-Red-Team-Operations)
 - [PenTest and Red Teams Tools by Joas and S3cur3Th1sSh1t](https://github.com/CyberSecurityUP/Awesome-Red-Team-Operations)
+- [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
+- [Reverse Shell cheat sheet](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md)
 
 ## Blue Team
 
