@@ -79,6 +79,7 @@ If it were not an important area, cinema would not invest so much in espionage f
 - [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
 - [Reverse Shell cheat sheet](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md)
 - [Reverse shell one-liner](https://oscp.infosecsanyam.in/shells/linux-reverse-shell-one-liner)
+- [Bug Hunter Handbook](https://gowthams.gitbook.io/bughunter-handbook/)
 
 ## Blue Team
 
