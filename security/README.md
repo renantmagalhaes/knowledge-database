@@ -118,6 +118,7 @@ If it were not an important area, cinema would not invest so much in espionage f
 # AWS
 
 - [AWS Security tools](https://github.com/toniblyx/my-arsenal-of-aws-security-tools)
+- [prowler](https://github.com/prowler-cloud/prowler)
 
 
 
