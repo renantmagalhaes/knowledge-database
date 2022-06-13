@@ -114,6 +114,13 @@ If it were not an important area, cinema would not invest so much in espionage f
 - SOC Analyst = Microsoft
 - GSOC = GIAC
 - PenTest+ = CompTIA
+
+# AWS
+
+- [AWS Security tools](https://github.com/toniblyx/my-arsenal-of-aws-security-tools)
+
+
+
 ## Extra Materials
 
 - [Cyber Sec Resources](https://github.com/scspcommunity/Cyber-Sec-Resources)
