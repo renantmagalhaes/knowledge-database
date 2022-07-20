@@ -1,0 +1,26 @@
+Document - Commands for SSH Agent Forwarding
+Step 1: Create Public/Private Key in Remote Client EC2
+
+ssh-keygen
+
+Step 2: Setup Authentication
+
+Copy the contents of public key form remote-client to the ~/.ssh/authorized_keys file of both Bastion and Private EC2.
+
+Step 3: Use SSH Agent Forwarding
+
+Run the following commands on the remote-client EC2 instance
+
+exec ssh-agent bash
+eval 'ssh-agent -s'
+ssh-add -L
+ssh-add -k ~/.ssh/id_rsa
+Step 4: Test the Setup
+
+From remote-client EC2, run the following command:
+
+ssh -A [BASTION-EC2-IP]
+
+Once you are logged into Bastion, try to connect to Private EC2
+
+ssh [IP-OF-PRIVATE-EC2]
