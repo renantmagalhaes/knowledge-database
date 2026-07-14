@@ -1,0 +1,78 @@
+site_name: Knowledge Database
+site_description: >-
+  A curated reference repository for infrastructure, DevOps, cloud, security,
+  networking, and utility notes.
+site_url: https://renantmagalhaes.github.io/knowledge-database/
+repo_url: https://github.com/renantmagalhaes/knowledge-database
+repo_name: renantmagalhaes/knowledge-database
+edit_uri: edit/master/docs/
+
+theme:
+  name: material
+  language: en
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to system preference
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - toc.follow
+    - content.code.copy
+    - content.action.edit
+
+plugins:
+  - search
+  - awesome-pages
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+# Stray editor config nested inside content folders; not part of the
+# published knowledge base. New markdown files anywhere under docs/ are
+# picked up automatically - no nav list to maintain.
+exclude_docs: |
+  kubernetes/.vscode/
