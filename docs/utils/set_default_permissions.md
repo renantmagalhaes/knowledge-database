@@ -1,5 +1,9 @@
-#Folders
+# Set Default Permissions
+
+```sh
+# Folders
 find /path/to/dir -type d -exec chmod 755 {} \;
 
-#Files
+# Files
 find /path/to/files -type f -exec chmod 644 {} \;
+```

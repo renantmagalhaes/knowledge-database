@@ -1,1 +1,5 @@
+# Mount a Windows Share in Linux
+
+```sh
 mount -t cifs //$IP/$SHARE_PATH -o username=$USERNAME,password=$PASSWD /mnt/$MOUNT_PATH
+```

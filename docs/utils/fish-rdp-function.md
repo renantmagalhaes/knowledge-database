@@ -1,3 +1,9 @@
+# Fish Shell RDP Function
+
+Wraps `xfreerdp` into a `rdp <host>` command for the [Fish shell](https://fishshell.com/).
+
+```fish
 function rdp --description "RDP for Fish"
   xfreerdp +drives +clipboard /cert-ignore /size:800x600 /u:$USER /p:$PASS /v:"$argv[1].$DOMAIN"
   end
+```

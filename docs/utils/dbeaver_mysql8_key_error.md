@@ -1,3 +1,7 @@
+# DBeaver MySQL 8 Key Error
+
+Fix for `PKIX path building failed` / public key retrieval errors when connecting DBeaver to MySQL 8.
+
 1) Right click your connection, choose "Edit Connection"
 
 2) On the "Connection settings" screen (main screen) click on "Edit Driver Settings"
