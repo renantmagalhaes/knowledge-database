@@ -1,32 +1,40 @@
-Disable SELinux
+# Rancher 1.6
 
+```sh
+# Disable SELinux
 iptables -I INPUT -j ACCEPT
 
-#Install Docker
+# Install Docker
 curl https://releases.rancher.com/install-docker/17.03.sh | sh
 
-#Install rancher server
+# Install rancher server
 docker run -d --restart=unless-stopped -p 8080:8080 rancher/server:stable
+```
 
-#Enviroment
-Manage enviroment > Add Kubernetes > Add Host > Docker CLI to agent
+## Environment
 
+Manage Environment > Add Kubernetes > Add Host > Docker CLI to agent
 
-#enable proxy
+```sh
+# Enable proxy
 kubectl proxy
+```
 
+## Deployment Example lvl 1
 
-# Deployment Example lvl 1
+```sh
 $ kubectl run nginx --image=nginx --port=80
 $ kubectl expose deployment nginx --type=NodePort
+```
 
+## Deployment Example lvl 2
 
-
-# Deployment Example lvl 2
-  #Expose a service
+```sh
+# Expose a service
 kubectl run $NAME --replicas=4 --labels="run=load-balancer-$NAME" --image=$REPO/$IMAGE:$TAG --port=$PORTNUMBER
 kubectl get pods --selector="run=load-balancer-$NAME"
 kubectl get replicasets --selector="run=load-balancer-$NAME"
 kubectl expose rs $REPLICASET_NAME --port=80 --target-port=80 --name=thumbor-service --type=LoadBalancer --external-ip=192.168.5.30
-Or
+# Or
 kubectl expose rs $REPLICASET_NAME --port=80 --target-port=80 --name=thumbor-service --type=LoadBalancer --external-ip=192.168.5.30
+```
